@@ -1,15 +1,15 @@
-import Package from "../models/Package";
+import ProductPackage from "../models/ProductPackage";
 import { Utils } from "../utils/Utils";
 
-export class PackageController {
+export class ProductPackageController {
 
     static async create(req, res, next){  
 
         try {
 
-            let packages:any = await new Package(req.body).save();
+            let packages:any = await new ProductPackage(req.body).save();
             res.json({
-                message:'Package Save Successfully',
+                message:'ProductPackage Save Successfully',
                 data:packages,
                 status_code:200
             });
@@ -22,9 +22,9 @@ export class PackageController {
     }
 
     static async update(req, res, next) {
-        const PackageId = req.packages._id;
+        const ProductPackageId = req.packages._id;
         try {
-            const packages = await Package.findOneAndUpdate({_id: PackageId}, req.body, {new: true, useFindAndModify: false});
+            const packages = await ProductPackage.findOneAndUpdate({_id: ProductPackageId}, req.body, {new: true, useFindAndModify: false});
             res.send(packages);
         } catch (e) {
             next(e);
@@ -32,7 +32,7 @@ export class PackageController {
 
     }
 
-    static async Package(req, res, next){
+    static async ProductPackage(req, res, next){
         const packages = req.packages;
         const data = {
             message : 'Success',
@@ -41,10 +41,10 @@ export class PackageController {
         res.json(data);
     }
 
-    static async allPackage(req, res, next){
+    static async allProductPackage(req, res, next){
 
         try {
-            const packages = await Package.find({status:true}, {__v: 0});
+            const packages = await ProductPackage.find({status:true}, {__v: 0});
             const data = {
                 message : 'Success',
                 data:packages
@@ -55,10 +55,10 @@ export class PackageController {
         }
     }
 
-    static async allAdminPackage(req, res, next){
+    static async allAdminProductPackage(req, res, next){
 
         try {
-            const packages = await Package.find();
+            const packages = await ProductPackage.find();
             const data = {
                 message : 'Success',
                 data:packages
@@ -75,7 +75,7 @@ export class PackageController {
         try {
             await packages.remove();
             res.json({
-                message:'Success ! Package Deleted Successfully',
+                message:'Success ! ProductPackage Deleted Successfully',
                 status_code: 200
             });
         } catch (e) {

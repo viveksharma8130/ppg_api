@@ -1,8 +1,8 @@
 import { body, param, query } from "express-validator";
 
-import Package from "../../models/Package";
+import ProductPackage from "../../models/ProductPackage";
 
-export class PackageValidators{
+export class ProductPackageValidators{
 
     static create(){
 
@@ -10,7 +10,7 @@ export class PackageValidators{
                     body('item', 'item Is Required'),
                     body('item_id', 'item_id Is Required'),
                     body('validity', 'validity Is Required').custom((validity, {req})=>{
-                        return  Package.findOne({validity:validity,item_id:req.body.item_id}).then(packages => {
+                        return  ProductPackage.findOne({validity:validity,item_id:req.body.item_id}).then(packages => {
                                     if(packages){
                                         throw new Error('Already Exist');
                                     }else{
@@ -24,9 +24,9 @@ export class PackageValidators{
         
     }
 
-    static Package() {
+    static ProductPackage() {
         return [param('id').custom((id, {req}) => {
-            return Package.findOne({_id: id}, {__v: 0}).then((packages) => {
+            return ProductPackage.findOne({_id: id}, {__v: 0}).then((packages) => {
                 if (packages) {
                     req.packages = packages;
                     return true;
@@ -37,9 +37,9 @@ export class PackageValidators{
         })]
     } 
 
-    static itemPackage() {
+    static itemProductPackage() {
         return [param('item_id').custom((item_id, {req}) => {
-            return Package.find({item_id: item_id}, {__v: 0}).then((packages) => {
+            return ProductPackage.find({item_id: item_id}, {__v: 0}).then((packages) => {
                 if (packages) {
                     req.packages = packages;
                     return true;
@@ -52,7 +52,7 @@ export class PackageValidators{
 
     static update() {
         return [param('id').custom((id, {req}) => {
-            return Package.findOne({_id: id}, {__v: 0}).then((packages) => {
+            return ProductPackage.findOne({_id: id}, {__v: 0}).then((packages) => {
                 if (packages) {
                     req.packages = packages;
                     return true;
@@ -65,7 +65,7 @@ export class PackageValidators{
 
     static delete() {
         return [param('id').custom((id, {req}) => {
-            return Package.findOne({_id: id}, {__v: 0}).then((packages) => {
+            return ProductPackage.findOne({_id: id}, {__v: 0}).then((packages) => {
                 if (packages) {
                     req.packages = packages;
                     return true;
