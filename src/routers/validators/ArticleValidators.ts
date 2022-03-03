@@ -7,16 +7,8 @@ export class ArticleValidators{
     static create(){
 
         return  [ 
-                    body('article', 'article Is Required').custom((article, {req})=>{
-                        return  Article.findOne({article:article}).then(article => {
-                                    if(article){
-                                        throw new Error('article Already Exist');
-                                    }else{
-                                        return true;
-                                    }
-                                })
-                    })
-    
+                    body('title', 'title Is Required'),
+                    body('description', 'description Is Required'),
                 ];
         
     }

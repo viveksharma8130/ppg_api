@@ -1,17 +1,19 @@
 import Article from "../models/Article";
+import { Utils } from "../utils/Utils";
 
 export class ArticleController {
 
     static async create(req, res, next){  
 
-        const article = req.body.article;
-
         try {
-            const data ={
-                article: article
+            let fileObject:any = {};
+            if(req.file){
+                fileObject.image=req.file.location;
+                fileObject.image_name=req.file.key;
             }
+            var insert = {...fileObject, ...req.body};
 
-            let article_data:any = await new Article(data).save();
+            let article_data:any = await new Article(insert).save();
             res.json({
                 message:'Article Save Successfully',
                 data:article_data,
@@ -26,9 +28,16 @@ export class ArticleController {
     }
 
     static async update(req, res, next) {
-        const ArticleId = req.Article._id;
+        const ArticleId = req.article._id;
         try {
-            const article = await Article.findOneAndUpdate({_id: ArticleId}, req.body, {new: true, useFindAndModify: false});
+            let fileObject:any = {};
+            if(req.file){
+                Utils.s3Delete(req.article.image_name);
+                fileObject.image=req.file.location;
+                fileObject.image_name=req.file.key;
+            }
+            var update = {...fileObject, ...req.body}; 
+            const article = await Article.findOneAndUpdate({_id: ArticleId}, update, {new: true, useFindAndModify: false});
             res.send(article);
         } catch (e) {
             next(e);
@@ -76,6 +85,9 @@ export class ArticleController {
     static async delete(req, res, next) {
         const article = req.article;
         try {
+            if(req.article.image){
+                Utils.s3Delete(req.article.image_name);
+            }
             await article.remove();
             res.json({
                 message:'Success ! Article Deleted Successfully',

@@ -3,7 +3,9 @@ import { model } from 'mongoose';
 import { Utils } from '../utils/Utils';
 
 const ArticleSchema = new mongoose.Schema({
-    article                  : {type: String, required: true},
+    title                    : {type: String, required: true},
+    image                    : {type: String, required: true},
+    description              : {type: String, required: true},
     sequence                 : {type: Number, required: false, default:1},
     status                   : {type: Boolean, required: true, default: true},
     created_at               : {type: Date, required: true, default: Utils.indianTimeZone},

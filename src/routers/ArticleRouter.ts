@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { ArticleController } from "../controllers/ArticleController";
 import { GlobalMiddleWare } from "../middlewares/GlobalMiddleWare";
+import { Utils } from "../utils/Utils";
 import { ArticleValidators } from "./validators/ArticleValidators";
 
 class ArticleRouter {
@@ -20,7 +21,7 @@ class ArticleRouter {
         this.router.get('/admin/all', GlobalMiddleWare.adminAuthenticate, ArticleController.allAdminArticle);
     }
     postRoutes(){
-        this.router.post('/create', GlobalMiddleWare.adminAuthenticate, ArticleValidators.create(), GlobalMiddleWare.checkError, ArticleController.create);
+        this.router.post('/create', GlobalMiddleWare.adminAuthenticate, new Utils().s3Multer.single('image'), ArticleValidators.create(), GlobalMiddleWare.checkError, ArticleController.create);
     }
     patchRoutes(){
         this.router.patch('/update/:id', GlobalMiddleWare.adminAuthenticate, ArticleValidators.update(), GlobalMiddleWare.checkError, ArticleController.update);
