@@ -24,7 +24,7 @@ class ArticleRouter {
         this.router.post('/create', GlobalMiddleWare.adminAuthenticate, new Utils().s3Multer.single('image'), ArticleValidators.create(), GlobalMiddleWare.checkError, ArticleController.create);
     }
     patchRoutes(){
-        this.router.patch('/update/:id', GlobalMiddleWare.adminAuthenticate, ArticleValidators.update(), GlobalMiddleWare.checkError, ArticleController.update);
+        this.router.patch('/update/:id', GlobalMiddleWare.adminAuthenticate, new Utils().s3Multer.single('image'), ArticleValidators.update(), GlobalMiddleWare.checkError, ArticleController.update);
     }
     deleteRoutes(){
         this.router.delete('/delete/:id', GlobalMiddleWare.adminAuthenticate, ArticleValidators.delete(), GlobalMiddleWare.checkError,ArticleController.delete)
