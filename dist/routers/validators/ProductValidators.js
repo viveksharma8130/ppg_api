@@ -16,8 +16,7 @@ class ProductValidators {
                     }
                 });
             }),
-            (0, express_validator_1.body)('price', 'price is Required').isString(),
-            (0, express_validator_1.body)('mrp', 'mrp Is Required').isNumeric(),
+            (0, express_validator_1.body)('variant', 'variant is Required'),
         ];
     }
     static product() {
