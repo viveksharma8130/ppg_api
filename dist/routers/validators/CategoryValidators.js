@@ -20,9 +20,9 @@ class CategoryValidators {
     }
     static category() {
         return [(0, express_validator_1.param)('id').custom((id, { req }) => {
-                return Category_1.default.findOne({ _id: id }, { __v: 0 }).then((Category) => {
-                    if (Category) {
-                        req.Category = Category;
+                return Category_1.default.findOne({ _id: id }, { __v: 0 }).populate('filter').then((category) => {
+                    if (category) {
+                        req.category = category;
                         return true;
                     }
                     else {
@@ -33,9 +33,9 @@ class CategoryValidators {
     }
     static update() {
         return [(0, express_validator_1.param)('id').custom((id, { req }) => {
-                return Category_1.default.findOne({ _id: id }, { __v: 0 }).then((Category) => {
-                    if (Category) {
-                        req.Category = Category;
+                return Category_1.default.findOne({ _id: id }, { __v: 0 }).then((category) => {
+                    if (category) {
+                        req.category = category;
                         return true;
                     }
                     else {
@@ -46,9 +46,9 @@ class CategoryValidators {
     }
     static delete() {
         return [(0, express_validator_1.param)('id').custom((id, { req }) => {
-                return Category_1.default.findOne({ _id: id }, { __v: 0 }).then((Category) => {
-                    if (Category) {
-                        req.Category = Category;
+                return Category_1.default.findOne({ _id: id }, { __v: 0 }).then((category) => {
+                    if (category) {
+                        req.category = category;
                         return true;
                     }
                     else {

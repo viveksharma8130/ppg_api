@@ -20,6 +20,7 @@ const PaperRouter_1 = require("./routers/PaperRouter");
 const PujaRouter_1 = require("./routers/PujaRouter");
 const ProductRouter_1 = require("./routers/ProductRouter");
 const PujaPackageRouter_1 = require("./routers/PujaPackageRouter");
+const FilterRouter_1 = require("./routers/FilterRouter");
 class Server {
     constructor() {
         this.app = express();
@@ -49,6 +50,7 @@ class Server {
         this.app.use('/api/user', UserRouter_1.default);
         this.app.use('/api/banner', BannerRouter_1.default);
         this.app.use('/api/category', CategoryRouter_1.default);
+        this.app.use('/api/filter', FilterRouter_1.default);
         this.app.use('/api/event', EventRouter_1.default);
         this.app.use('/api/article', ArticleRouter_1.default);
         this.app.use('/api/course', CourseRouter_1.default);

@@ -9,16 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CategoryController = void 0;
-const Category_1 = require("../models/Category");
+exports.FilterController = void 0;
+const Filter_1 = require("../models/Filter");
 const Utils_1 = require("../utils/Utils");
-class CategoryController {
+class FilterController {
     static create(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let category_data = yield new Category_1.default(req.body).save();
+                let category_data = yield new Filter_1.default(req.body).save();
                 res.json({
-                    message: 'Category Save Successfully',
+                    message: 'Filter Save Successfully',
                     data: category_data,
                     status_code: 200
                 });
@@ -31,7 +31,7 @@ class CategoryController {
     static excel(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             const excelData = yield Utils_1.Utils.importExcelData2MongoDB(req.file.path);
-            yield Category_1.default.insertMany(excelData);
+            yield Filter_1.default.insertMany(excelData);
             res.json({
                 message: 'File uploaded/import successfully!',
                 file_name: req.file,
@@ -41,33 +41,33 @@ class CategoryController {
     }
     static update(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const CategoryId = req.category._id;
+            const FilterId = req.filter._id;
             try {
-                const category = yield Category_1.default.findOneAndUpdate({ _id: CategoryId }, req.body, { new: true, useFindAndModify: false });
-                res.send(category);
+                const filter = yield Filter_1.default.findOneAndUpdate({ _id: FilterId }, req.body, { new: true, useFindAndModify: false });
+                res.send(filter);
             }
             catch (e) {
                 next(e);
             }
         });
     }
-    static category(req, res, next) {
+    static filter(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const category = req.category;
+            const filter = req.filter;
             const data = {
                 message: 'Success',
-                data: category
+                data: filter
             };
             res.json(data);
         });
     }
-    static allCategory(req, res, next) {
+    static allFilter(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const category = yield Category_1.default.find({ status: true }, { __v: 0 }).sort({ sequence: 1 }).populate('filter');
+                const filter = yield Filter_1.default.find({ status: true }, { __v: 0 }).sort({ sequence: 1 });
                 const data = {
                     message: 'Success',
-                    data: category
+                    data: filter
                 };
                 res.json(data);
             }
@@ -76,13 +76,13 @@ class CategoryController {
             }
         });
     }
-    static allAdminCategory(req, res, next) {
+    static allAdminFilter(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const category = yield Category_1.default.find().sort({ sequence: 1 }).populate('filter');
+                const filter = yield Filter_1.default.find().sort({ sequence: 1 });
                 const data = {
                     message: 'Success',
-                    data: category
+                    data: filter
                 };
                 res.json(data);
             }
@@ -93,11 +93,11 @@ class CategoryController {
     }
     static delete(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const category = req.category;
+            const filter = req.filter;
             try {
-                yield category.remove();
+                yield filter.remove();
                 res.json({
-                    message: 'Success ! Category Deleted Successfully',
+                    message: 'Success ! Filter Deleted Successfully',
                     status_code: 200
                 });
             }
@@ -107,4 +107,4 @@ class CategoryController {
         });
     }
 }
-exports.CategoryController = CategoryController;
+exports.FilterController = FilterController;
