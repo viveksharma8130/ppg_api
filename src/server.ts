@@ -17,6 +17,7 @@ import PaperRouter from './routers/PaperRouter';
 import PujaRouter from './routers/PujaRouter';
 import ProductRouter from './routers/ProductRouter';
 import PujaPackageRouter from './routers/PujaPackageRouter';
+import FilterRouter from './routers/FilterRouter';
 
 export class Server {
     public app: express.Application = express();
@@ -52,6 +53,7 @@ export class Server {
         this.app.use('/api/user', UserRouter);
         this.app.use('/api/banner', BannerRouter);
         this.app.use('/api/category', CategoryRouter);
+        this.app.use('/api/filter', FilterRouter);
         this.app.use('/api/event', EventRouter);
         this.app.use('/api/article', ArticleRouter);
         this.app.use('/api/course', CourseRouter);
