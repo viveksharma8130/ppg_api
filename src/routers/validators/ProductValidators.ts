@@ -16,8 +16,7 @@ export class ProductValidators{
                                     }
                                 })
                     }),
-                    body('price', 'price is Required').isString(),
-                    body('mrp', 'mrp Is Required').isNumeric(),
+                    body('variant', 'variant is Required'),
     
                 ];
         

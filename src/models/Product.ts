@@ -7,12 +7,12 @@ const ProductSchema = new mongoose.Schema({
     description              : {type: String, required: false},
     short_description        : {type: String, required: false},
     category                 : {type: mongoose.Types.ObjectId, ref: 'categorys', required: false}, // cloth - size & material, length
-    //image                    : {type: String, required: false},
-    //image_name               : {type: String, required: false},
+    image                    : {type: String, required: false},
+    image_name               : {type: String, required: false},
     //mrp                      : {type: Number, required: true},
     //price                    : {type: String, required: true},
     variant                  : {type: String, required: true}, // [{id:'1', mrp:'200', price:'150', size:'M', material:'Cotton', Colour:'Brown'},{id:'2', mrp:'200',price:'150',size:'M',material:'COTTON',COLOUR:'BLACK'}]
-    brand                    : {type: String, required: true},
+    brand                    : {type: String, required: false},
     sequence                 : {type: Number, required: false, default:1},
     ishome                   : {type: Boolean, required: true, default: false},
     status                   : {type: Boolean, required: true, default: true},
