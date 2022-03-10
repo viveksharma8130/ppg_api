@@ -4,6 +4,7 @@ import { Utils } from '../utils/Utils';
 
 const CategorySchema = new mongoose.Schema({
     category                 : {type: String, required: true},
+    filter                   : [{type: mongoose.Types.ObjectId, ref: 'filters', required: false}],
     sequence                 : {type: Number, required: false, default:1},
     status                   : {type: Boolean, required: true, default: true},
     created_at               : {type: Date, required: true, default: Utils.indianTimeZone},

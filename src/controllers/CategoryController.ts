@@ -5,14 +5,8 @@ export class CategoryController {
 
     static async create(req, res, next){  
 
-        const category = req.body.category;
-
         try {
-            const data ={
-                category: category
-            }
-
-            let category_data:any = await new Category(data).save();
+            let category_data:any = await new Category(req.body).save();
             res.json({
                 message:'Category Save Successfully',
                 data:category_data,
@@ -40,7 +34,7 @@ export class CategoryController {
     }
 
     static async update(req, res, next) {
-        const CategoryId = req.Category._id;
+        const CategoryId = req.category._id;
         try {
             const category = await Category.findOneAndUpdate({_id: CategoryId}, req.body, {new: true, useFindAndModify: false});
             res.send(category);
@@ -51,7 +45,7 @@ export class CategoryController {
     }
 
     static async category(req, res, next){
-        const category = req.Category;
+        const category = req.category;
         const data = {
             message : 'Success',
             data:category
@@ -62,7 +56,7 @@ export class CategoryController {
     static async allCategory(req, res, next){
 
         try {
-            const category = await Category.find({status:true}, {__v: 0}).sort({sequence:1});
+            const category = await Category.find({status:true}, {__v: 0}).sort({sequence:1}).populate('filter');
             const data = {
                 message : 'Success',
                 data:category
@@ -76,7 +70,7 @@ export class CategoryController {
     static async allAdminCategory(req, res, next){
 
         try {
-            const category = await Category.find().sort({sequence:1});
+            const category = await Category.find().sort({sequence:1}).populate('filter');
             const data = {
                 message : 'Success',
                 data:category
@@ -89,9 +83,9 @@ export class CategoryController {
 
 
     static async delete(req, res, next) {
-        const Category = req.Category;
+        const category = req.category;
         try {
-            await Category.remove();
+            await category.remove();
             res.json({
                 message:'Success ! Category Deleted Successfully',
                 status_code: 200

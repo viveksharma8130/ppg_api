@@ -23,9 +23,9 @@ export class CategoryValidators{
 
     static category() {
         return [param('id').custom((id, {req}) => {
-            return Category.findOne({_id: id}, {__v: 0}).then((Category) => {
-                if (Category) {
-                    req.Category = Category;
+            return Category.findOne({_id: id}, {__v: 0}).populate('filter').then((category) => {
+                if (category) {
+                    req.category = category;
                     return true;
                 } else {
                     throw new Error('Category Does Not Exist');
@@ -36,9 +36,9 @@ export class CategoryValidators{
 
     static update() {
         return [param('id').custom((id, {req}) => {
-            return Category.findOne({_id: id}, {__v: 0}).then((Category) => {
-                if (Category) {
-                    req.Category = Category;
+            return Category.findOne({_id: id}, {__v: 0}).then((category) => {
+                if (category) {
+                    req.category = category;
                     return true;
                 } else {
                     throw new Error('Category Does Not Exist');
@@ -49,9 +49,9 @@ export class CategoryValidators{
 
     static delete() {
         return [param('id').custom((id, {req}) => {
-            return Category.findOne({_id: id}, {__v: 0}).then((Category) => {
-                if (Category) {
-                    req.Category = Category;
+            return Category.findOne({_id: id}, {__v: 0}).then((category) => {
+                if (category) {
+                    req.category = category;
                     return true;
                 } else {
                     throw new Error('Category Does Not Exist');
