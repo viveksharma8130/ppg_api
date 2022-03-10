@@ -4,6 +4,7 @@ import { Utils } from '../utils/Utils';
 
 const PujaSchema = new mongoose.Schema({
     name                     : {type: String, required: true},
+    slug                     : {type: String, required: false},
     description              : {type: String, required: false},
     short_description        : {type: String, required: false},
     image                    : {type: String, required: false},
