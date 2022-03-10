@@ -5,6 +5,7 @@ const mongoose_1 = require("mongoose");
 const Utils_1 = require("../utils/Utils");
 const PujaSchema = new mongoose.Schema({
     name: { type: String, required: true },
+    slug: { type: String, required: false },
     description: { type: String, required: false },
     short_description: { type: String, required: false },
     image: { type: String, required: false },
