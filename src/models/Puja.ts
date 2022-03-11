@@ -9,7 +9,7 @@ const PujaSchema = new mongoose.Schema({
     short_description        : {type: String, required: false},
     image                    : {type: String, required: false},
     image_name               : {type: String, required: false},
-    price                    : {type: String, required: true},
+    price                    : {type: String, required: false},
     samagri_price            : {type: Number, required: false},
     package_type             : {type: String, required: false, enum:['single','multiple'], default:'single'},
     sequence                 : {type: Number, required: false, default:1},
