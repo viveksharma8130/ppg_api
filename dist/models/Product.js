@@ -24,3 +24,5 @@ const ProductSchema = new mongoose.Schema({
 ProductSchema.set('toObject', { virtuals: true });
 ProductSchema.set('toJSON', { virtuals: true });
 exports.default = (0, mongoose_1.model)('products', ProductSchema);
+//  var variant =[];
+//  var variant =[{id:'1', mrp:'200', price:'150', size:'M', material:'Cotton', Colour:'Brown'}];
