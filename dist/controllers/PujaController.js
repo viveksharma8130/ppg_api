@@ -56,7 +56,7 @@ class PujaController {
                     fileObject.image_name = req.file.key;
                 }
                 var update = Object.assign(Object.assign({}, fileObject), req.body);
-                const puja = yield Puja_1.default.findOneAndUpdate({ _id: req.Puja._id }, update, { new: true, useFindAndModify: false });
+                const puja = yield Puja_1.default.findOneAndUpdate({ _id: req.puja._id }, update, { new: true, useFindAndModify: false });
                 res.send(puja);
             }
             catch (e) {
