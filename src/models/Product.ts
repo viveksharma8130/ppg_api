@@ -7,7 +7,7 @@ const ProductSchema = new mongoose.Schema({
     slug                     : {type: String, required: false},
     description              : {type: String, required: false},
     short_description        : {type: String, required: false},
-    category                 : {type: mongoose.Types.ObjectId, ref: 'categorys', required: false}, // cloth - size & material, length
+    category                 : {type: mongoose.Types.ObjectId, ref: 'categorys', required: false}, // cloth - size, material & colour
     image                    : {type: String, required: false},
     image_name               : {type: String, required: false},
     //mrp                      : {type: Number, required: true},
@@ -26,3 +26,5 @@ ProductSchema.set('toJSON', { virtuals: true });
 
 export default model('products', ProductSchema);
 
+//  var variant =[];
+//  var variant =[{id:'1', mrp:'200', price:'150', size:'M', material:'Cotton', Colour:'Brown'}];
