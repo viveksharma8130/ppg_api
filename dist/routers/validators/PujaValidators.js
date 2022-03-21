@@ -16,7 +16,7 @@ class PujaValidators {
                     }
                 });
             }),
-            (0, express_validator_1.body)('price', 'price is Required').isNumeric(),
+            //body('price', 'price is Required').isNumeric(),
             //body('samagri_price', 'samagri_price Is Required').isNumeric(),
         ];
     }

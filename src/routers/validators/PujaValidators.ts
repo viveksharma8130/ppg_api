@@ -16,7 +16,7 @@ export class PujaValidators{
                                     }
                                 })
                     }),
-                    body('price', 'price is Required').isNumeric(),
+                    //body('price', 'price is Required').isNumeric(),
                     //body('samagri_price', 'samagri_price Is Required').isNumeric(),
     
                 ];
