@@ -4,6 +4,7 @@ import User from "../models/User";
 import { Utils } from "../utils/Utils";
 import * as fs from 'fs';
 import UserSession from "../models/UserSession";
+import Cart from "../models/Cart";
 
 export class UserController {
 
@@ -256,6 +257,77 @@ export class UserController {
             await user.remove();
             res.json({
                 message:'Success ! User Deleted Successfully',
+                status_code: 200
+            });
+        } catch (e) {
+            next(e);
+        }
+    }
+
+    static async cartAll(req, res, next){
+
+        try {
+            const cart = await Cart.find({user_id:req.user.user_id, status:1}).populate({ path: "product"});
+            const data = {
+                message : 'Success',
+                data:cart
+            }; 
+            res.json(data);
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    static async wishlistAll(req, res, next){
+
+        try {
+            const cart = await Cart.find({user_id:req.user.user_id, status:0}).populate({ path: "product"});
+            const data = {
+                message : 'Success',
+                data:cart
+            }; 
+            res.json(data);
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    static async cartCreate(req, res, next){  
+
+        try {
+            // order create
+            const data = {...req.body, ...{user:req.user.user_id}};
+            let cart:any = await new Cart(data).save();
+            res.json({
+                message:'cart Save Successfully',
+                data:cart,
+                status_code:200
+            });
+
+        } catch (e) {
+            next(e)
+        }
+        
+   
+    }
+
+    static async cartUpdate(req, res, next) {
+        const cartId = req.cart._id;
+        try {
+            const cart = await Cart.findOneAndUpdate({_id: cartId}, req.body, {new: true, useFindAndModify: false});
+            res.send(cart);
+        } catch (e) {
+            next(e);
+        }
+
+    }
+
+    static async deleteCart(req, res, next) {
+        const cart = req.cart;
+        try {
+            await cart.remove();
+            res.json({
+                message:'Success ! cart Deleted Successfully',
                 status_code: 200
             });
         } catch (e) {

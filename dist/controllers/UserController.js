@@ -15,6 +15,7 @@ const env_1 = require("../environments/env");
 const User_1 = require("../models/User");
 const Utils_1 = require("../utils/Utils");
 const UserSession_1 = require("../models/UserSession");
+const Cart_1 = require("../models/Cart");
 class UserController {
     static session(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -251,6 +252,80 @@ class UserController {
                 yield user.remove();
                 res.json({
                     message: 'Success ! User Deleted Successfully',
+                    status_code: 200
+                });
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+    }
+    static cartAll(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const cart = yield Cart_1.default.find({ user_id: req.user.user_id, status: 1 }).populate({ path: "product" });
+                const data = {
+                    message: 'Success',
+                    data: cart
+                };
+                res.json(data);
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+    }
+    static wishlistAll(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const cart = yield Cart_1.default.find({ user_id: req.user.user_id, status: 0 }).populate({ path: "product" });
+                const data = {
+                    message: 'Success',
+                    data: cart
+                };
+                res.json(data);
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+    }
+    static cartCreate(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                // order create
+                const data = Object.assign(Object.assign({}, req.body), { user: req.user.user_id });
+                let cart = yield new Cart_1.default(data).save();
+                res.json({
+                    message: 'cart Save Successfully',
+                    data: cart,
+                    status_code: 200
+                });
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+    }
+    static cartUpdate(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const cartId = req.cart._id;
+            try {
+                const cart = yield Cart_1.default.findOneAndUpdate({ _id: cartId }, req.body, { new: true, useFindAndModify: false });
+                res.send(cart);
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+    }
+    static deleteCart(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const cart = req.cart;
+            try {
+                yield cart.remove();
+                res.json({
+                    message: 'Success ! cart Deleted Successfully',
                     status_code: 200
                 });
             }

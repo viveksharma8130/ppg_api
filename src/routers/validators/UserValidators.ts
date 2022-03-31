@@ -1,4 +1,6 @@
 import { body, param, query } from "express-validator";
+import Cart from "../../models/Cart";
+import Product from "../../models/Product";
 import User from "../../models/User";
 import UserSession from "../../models/UserSession";
 
@@ -125,6 +127,61 @@ export class UserValidators{
                     return true;
                 } else {
                     throw new Error('User Does Not Exist');
+                }
+            })
+        })]
+    }
+
+    static cartCreate(){
+
+        return  [ 
+                    body('total_amount', 'total_amount is Required').isNumeric(),
+                    body('quantity', 'quantity is Required').isNumeric(),
+                    body('product', 'product Is Required').isString().custom((product, {req})=>{
+                        return  Product.findOne({_id:product}).then(pr => {
+                                    if(pr){
+                                        return true;
+                                    }else{
+                                        throw new Error('Product Does Not Exist');
+                                    }
+                                })
+                    }),
+                    body('amount', 'amount is Required').isNumeric().custom((amount, {req})=>{
+                        return  Cart.findOne({product:req.body.product, user:req.user.user_id}).then(cart => {
+                                    if(cart){
+                                        throw new Error('Product Already Exist in cart');
+                                        
+                                    }else{
+                                        return true;
+                                    }
+                                })
+                    }),
+    
+                ];
+        
+    }
+
+    static cartUpdate() {
+        return [param('id').custom((id, {req}) => {
+            return Cart.findOne({_id: id}, {__v: 0}).then((cart) => {
+                if (cart) {
+                    req.cart = cart;
+                    return true;
+                } else {
+                    throw new Error('Cart Does Not Exist');
+                }
+            })
+        })]
+    }
+
+    static deleteCart() {
+        return [param('id').custom((id, {req}) => {
+            return Cart.findOne({_id: id}, {__v: 0}).then((cart) => {
+                if (cart) {
+                    req.cart = cart;
+                    return true;
+                } else {
+                    throw new Error('cart Does Not Exist');
                 }
             })
         })]

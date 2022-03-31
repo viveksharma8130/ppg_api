@@ -9,4 +9,9 @@ export declare class UserController {
     static profile(req: any, res: any, next: any): Promise<void>;
     static update(req: any, res: any, next: any): Promise<void>;
     static deleteUser(req: any, res: any, next: any): Promise<void>;
+    static cartAll(req: any, res: any, next: any): Promise<void>;
+    static wishlistAll(req: any, res: any, next: any): Promise<void>;
+    static cartCreate(req: any, res: any, next: any): Promise<void>;
+    static cartUpdate(req: any, res: any, next: any): Promise<void>;
+    static deleteCart(req: any, res: any, next: any): Promise<void>;
 }

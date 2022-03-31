@@ -1,4 +1,4 @@
 export const RazorKeys = {
-    razorIdkey:'rzp_test_moBEWBTvaAT6Oo',
-    razorIdSecret:'VOs0YDw2T3yCV7kNQAwvqYga'
+    razorIdkey:'rzp_test_lTf2h44v9i9IK2',
+    razorIdSecret:'P4Adf0ik9HSlpqEYVsd4BTte'
 } 

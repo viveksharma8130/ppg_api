@@ -6,4 +6,7 @@ export declare class UserValidators {
     static passwordChange(): import("express-validator").ValidationChain[];
     static deleteUser(): import("express-validator").ValidationChain[];
     static update(): import("express-validator").ValidationChain[];
+    static cartCreate(): import("express-validator").ValidationChain[];
+    static cartUpdate(): import("express-validator").ValidationChain[];
+    static deleteCart(): import("express-validator").ValidationChain[];
 }
