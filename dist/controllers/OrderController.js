@@ -46,6 +46,70 @@ class OrderController {
             }
         });
     }
+    static pujaCreate(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                // order create
+                const data = Object.assign(Object.assign({}, req.body), { user: req.user.user_id });
+                let order = yield new Order_1.default(data).save();
+                // wallet transaction create for order
+                const transaction_data = {
+                    user: req.user.user_id,
+                    channel: 'order',
+                    transaction_mode: 'debit',
+                    amount: req.body.amount,
+                    transaction_id: req.body.payment_id,
+                    item_object: req.body.item_data,
+                    transaction_obj: req.body.payment_data
+                };
+                let walletTransaction = yield new WalletTransaction_1.default(transaction_data).save();
+                // user wallet update
+                const user_wallet = yield User_1.default.findOneAndUpdate({ _id: req.user.user_id }, { $inc: { wallet: -req.body.amount } }, { new: true, useFindAndModify: false });
+                res.json({
+                    message: 'Order Save Successfully',
+                    data: order,
+                    walletTransaction: walletTransaction,
+                    user_wallet: user_wallet,
+                    status_code: 200
+                });
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+    }
+    static productCreate(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                // order create
+                const data = Object.assign(Object.assign({}, req.body), { user: req.user.user_id });
+                let order = yield new Order_1.default(data).save();
+                // wallet transaction create for order
+                const transaction_data = {
+                    user: req.user.user_id,
+                    channel: 'order',
+                    transaction_mode: 'debit',
+                    amount: req.body.amount,
+                    transaction_id: req.body.payment_id,
+                    item_object: req.body.item_data,
+                    transaction_obj: req.body.payment_data
+                };
+                let walletTransaction = yield new WalletTransaction_1.default(transaction_data).save();
+                // user wallet update
+                const user_wallet = yield User_1.default.findOneAndUpdate({ _id: req.user.user_id }, { $inc: { wallet: -req.body.amount } }, { new: true, useFindAndModify: false });
+                res.json({
+                    message: 'Order Save Successfully',
+                    data: order,
+                    walletTransaction: walletTransaction,
+                    user_wallet: user_wallet,
+                    status_code: 200
+                });
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+    }
     static deposit(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

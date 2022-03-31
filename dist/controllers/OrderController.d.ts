@@ -1,5 +1,7 @@
 export declare class OrderController {
     static create(req: any, res: any, next: any): Promise<void>;
+    static pujaCreate(req: any, res: any, next: any): Promise<void>;
+    static productCreate(req: any, res: any, next: any): Promise<void>;
     static deposit(req: any, res: any, next: any): Promise<void>;
     static update(req: any, res: any, next: any): Promise<void>;
     static order(req: any, res: any, next: any): Promise<void>;

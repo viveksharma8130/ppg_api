@@ -13,6 +13,7 @@ exports.PujaController = void 0;
 const Puja_1 = require("../models/Puja");
 const Order_1 = require("../models/Order");
 const Utils_1 = require("../utils/Utils");
+const OrderPuja_1 = require("../models/OrderPuja");
 class PujaController {
     static create(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -51,7 +52,7 @@ class PujaController {
             try {
                 let fileObject = {};
                 if (req.file) {
-                    Utils_1.Utils.s3Delete(req.Puja.image_name);
+                    Utils_1.Utils.s3Delete(req.puja.image_name);
                     fileObject.image = req.file.location;
                     fileObject.image_name = req.file.key;
                 }
@@ -197,6 +198,68 @@ class PujaController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const puja = yield Puja_1.default.find().sort({ sequence: 1 }).populate({ path: 'packages' });
+                const data = {
+                    message: 'Success',
+                    data: puja
+                };
+                res.json(data);
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+    }
+    static orderCreate(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                // order create
+                const data = Object.assign(Object.assign({}, req.body), { user: req.user.user_id });
+                let order = yield new OrderPuja_1.default(data).save();
+                // wallet transaction create for order
+                // const transaction_data = {
+                //     user:req.user.user_id,
+                //     channel:'order',
+                //     transaction_mode:'debit',
+                //     amount:req.body.amount,
+                //     transaction_id:req.body.payment_id,
+                //     item_object:req.body.puja_data,
+                //     transaction_obj:req.body.payment_data
+                // };
+                // let walletTransaction:any = await new WalletTransaction(transaction_data).save();
+                // user wallet update
+                //const user_wallet = await User.findOneAndUpdate({_id: req.user.user_id}, { $inc: { wallet: -req.body.amount} }, {new: true, useFindAndModify: false});
+                res.json({
+                    message: 'Order Save Successfully',
+                    data: order,
+                    //walletTransaction:walletTransaction,
+                    //user_wallet:user_wallet,
+                    status_code: 200
+                });
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+    }
+    static allOrder(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const puja = yield OrderPuja_1.default.find({ user: req.user.user_id }).sort({ created_at: -1 }).populate({ path: 'puja_id' });
+                const data = {
+                    message: 'Success',
+                    data: puja
+                };
+                res.json(data);
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+    }
+    static allAdminOrder(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const puja = yield OrderPuja_1.default.find({}).sort({ created_at: -1 }).populate({ path: 'puja_id' });
                 const data = {
                     message: 'Success',
                     data: puja

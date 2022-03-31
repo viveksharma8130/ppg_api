@@ -17,10 +17,12 @@ class UserRouter {
         this.router.get('/login', UserValidators_1.UserValidators.login(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, UserController_1.UserController.login);
         this.router.get('/user_data', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, UserController_1.UserController.userData);
         this.router.get('/admin/all', GlobalMiddleWare_1.GlobalMiddleWare.adminAuthenticate, UserController_1.UserController.all);
+        this.router.get('/cart/all', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, UserController_1.UserController.userData);
     }
     postRoutes() {
         // session
         this.router.post('/session', UserValidators_1.UserValidators.session(), UserController_1.UserController.session);
+        this.router.post('/cart/create', UserValidators_1.UserValidators.session(), UserController_1.UserController.session);
         this.router.post('/signup', UserValidators_1.UserValidators.signup(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, UserController_1.UserController.signup);
         this.router.post('/password/forgot', UserValidators_1.UserValidators.passwordForgot(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, UserController_1.UserController.passwordForgot);
         this.router.post('/password/change', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, UserValidators_1.UserValidators.passwordChange(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, UserController_1.UserController.passwordChange);

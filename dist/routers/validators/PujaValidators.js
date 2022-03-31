@@ -59,5 +59,22 @@ class PujaValidators {
                 });
             })];
     }
+    static orderCreate() {
+        return [
+            (0, express_validator_1.body)('puja_id', 'puja_id Is Required'),
+            (0, express_validator_1.body)('puja_amount', 'amount Is Required'),
+            (0, express_validator_1.body)('puja_data', 'payment_data Is Required'),
+            (0, express_validator_1.body)('amount', 'amount Is Required'),
+            (0, express_validator_1.body)('puja_date', 'puja_date Is Required'),
+            (0, express_validator_1.body)('samagri_status', 'samagri_status Is Required'),
+            (0, express_validator_1.body)('payment_id', 'payment_id Is Required'),
+            (0, express_validator_1.body)('payment_data', 'payment_data Is Required'),
+            (0, express_validator_1.body)('item_data', 'item_data Is Required'),
+            (0, express_validator_1.body)('name', 'name Is Required'),
+            (0, express_validator_1.body)('address', 'address Is Required'),
+            (0, express_validator_1.body)('phone', 'phone Is Required'),
+            (0, express_validator_1.body)('status', 'status Is Required'),
+        ];
+    }
 }
 exports.PujaValidators = PujaValidators;

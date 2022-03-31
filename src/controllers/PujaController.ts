@@ -251,4 +251,18 @@ export class PujaController {
         }
     }
 
+    static async allAdminOrder(req, res, next){
+
+        try {
+            const puja = await OrderPuja.find({}).sort({created_at:-1}).populate({path:'puja_id'});
+            const data = {
+                message : 'Success',
+                data:puja
+            }; 
+            res.json(data);
+        } catch (e) {
+            next(e)
+        }
+    }
+
 } 

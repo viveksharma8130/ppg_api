@@ -1,5 +1,7 @@
 export declare class OrderValidators {
     static create(): import("express-validator").ValidationChain[];
+    static pujaCreate(): import("express-validator").ValidationChain[];
+    static productCreate(): import("express-validator").ValidationChain[];
     static deposit(): import("express-validator").ValidationChain[];
     static order(): import("express-validator").ValidationChain[];
     static userOrder(): import("express-validator").ValidationChain[];

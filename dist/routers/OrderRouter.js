@@ -24,6 +24,8 @@ class OrderRouter {
     }
     postRoutes() {
         this.router.post('/create', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.create(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.create);
+        this.router.post('/puja/create', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.pujaCreate(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.pujaCreate);
+        this.router.post('/product/create', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.productCreate(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.productCreate);
         this.router.post('/deposit', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.deposit(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.deposit);
     }
     patchRoutes() {

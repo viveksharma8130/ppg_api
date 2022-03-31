@@ -3,4 +3,5 @@ export declare class PujaValidators {
     static Puja(): import("express-validator").ValidationChain[];
     static update(): import("express-validator").ValidationChain[];
     static delete(): import("express-validator").ValidationChain[];
+    static orderCreate(): import("express-validator").ValidationChain[];
 }
