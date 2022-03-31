@@ -62,5 +62,25 @@ export class PujaValidators{
         })]
     }
 
+    static orderCreate(){
+
+        return  [ 
+                    body('puja_id', 'puja_id Is Required'),
+                    body('puja_amount', 'amount Is Required'),
+                    body('puja_data', 'payment_data Is Required'),
+                    body('amount', 'amount Is Required'),
+                    body('puja_date', 'puja_date Is Required'),
+                    body('samagri_status', 'samagri_status Is Required'),
+                    body('payment_id', 'payment_id Is Required'),
+                    body('payment_data', 'payment_data Is Required'),
+                    body('item_data', 'item_data Is Required'),
+                    body('name', 'name Is Required'),
+                    body('address', 'address Is Required'),
+                    body('phone', 'phone Is Required'),
+                    body('status', 'status Is Required'),
+                ];
+        
+    }
+
 
 }

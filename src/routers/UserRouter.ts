@@ -18,10 +18,12 @@ class UserRouter {
         this.router.get('/login', UserValidators.login(), GlobalMiddleWare.checkError, UserController.login);
         this.router.get('/user_data', GlobalMiddleWare.authenticate, UserController.userData);
         this.router.get('/admin/all', GlobalMiddleWare.adminAuthenticate, UserController.all);
+        this.router.get('/cart/all', GlobalMiddleWare.authenticate, UserController.userData);
     }
     postRoutes(){
         // session
         this.router.post('/session', UserValidators.session(), UserController.session);
+        this.router.post('/cart/create', UserValidators.session(), UserController.session);
         this.router.post('/signup', UserValidators.signup(), GlobalMiddleWare.checkError, UserController.signup);
         this.router.post('/password/forgot', UserValidators.passwordForgot(), GlobalMiddleWare.checkError, UserController.passwordForgot);
         this.router.post('/password/change', GlobalMiddleWare.authenticate, UserValidators.passwordChange(), GlobalMiddleWare.checkError, UserController.passwordChange);

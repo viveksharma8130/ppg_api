@@ -19,6 +19,42 @@ export class OrderValidators{
         
     }
 
+    static pujaCreate(){
+
+        return  [ 
+                    body('item', 'item Is Required'),
+                    body('item_id', 'item_id Is Required'),
+                    body('amount', 'amount Is Required'),
+                    body('puja_date', 'puja_date Is Required'),
+                    body('samagri_status', 'samagri_status Is Required'),
+                    body('payment_id', 'payment_id Is Required'),
+                    body('payment_data', 'payment_data Is Required'),
+                    body('item_data', 'item_data Is Required'),
+                    body('name', 'name Is Required'),
+                    body('address', 'address Is Required'),
+                    body('phone', 'phone Is Required'),
+                    body('status', 'status Is Required'),
+                ];
+        
+    }
+
+    static productCreate(){
+
+        return  [ 
+                    body('item', 'item Is Required'),
+                    body('item_id', 'item_id Is Required'),
+                    body('amount', 'amount Is Required'),
+                    body('payment_id', 'payment_id Is Required'),
+                    body('payment_data', 'payment_data Is Required'),
+                    body('item_data', 'item_data Is Required'),
+                    body('name', 'name Is Required'),
+                    body('address', 'address Is Required'),
+                    body('phone', 'phone Is Required'),
+                    body('status', 'status Is Required'),
+                ];
+        
+    }
+
     static deposit(){
 
         return  [ 

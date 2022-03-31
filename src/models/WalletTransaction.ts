@@ -4,6 +4,7 @@ import { Utils } from '../utils/Utils';
 
 const WalletTransactionSchema = new mongoose.Schema({
     user                     : {type: mongoose.Types.ObjectId, ref: 'users', required: false},
+    order_id                 : {type: mongoose.Types.ObjectId, ref: 'users', required: false},
     channel                  : {type: String, required: true, enum:['reward','deposit','order']},
     transaction_mode         : {type: String, required: true, enum:['credit','debit']},
     amount                   : {type: Number, required: true},

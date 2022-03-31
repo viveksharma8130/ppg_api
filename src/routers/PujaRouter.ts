@@ -21,10 +21,13 @@ class PujaRouter {
         this.router.get('/all', GlobalMiddleWare.loginAuthenticate, PujaController.allPuja);
         this.router.get('/home/all', GlobalMiddleWare.loginAuthenticate, PujaController.allHomePuja);
         this.router.get('/admin/all', GlobalMiddleWare.adminAuthenticate, PujaController.allAdminPuja);
+        this.router.get('/order/all', GlobalMiddleWare.loginAuthenticate, PujaController.allOrder);
     }
     postRoutes(){
         this.router.post('/create', GlobalMiddleWare.adminAuthenticate, new Utils().s3Multer.single('image'), PujaValidators.create(), GlobalMiddleWare.checkError, PujaController.create);
         this.router.post('/excel', GlobalMiddleWare.adminAuthenticate, new Utils().excelMulter.single('excel'), PujaController.excel);
+
+        this.router.post('/order/create', GlobalMiddleWare.adminAuthenticate, PujaValidators.orderCreate(), GlobalMiddleWare.checkError, PujaController.orderCreate);
     }
     patchRoutes(){
         this.router.patch('/update/:id', GlobalMiddleWare.adminAuthenticate, new Utils().s3Multer.single('image'), PujaValidators.update(), GlobalMiddleWare.checkError, PujaController.update);

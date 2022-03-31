@@ -41,6 +41,81 @@ export class OrderController {
    
     }
 
+    static async pujaCreate(req, res, next){  
+
+        try {
+            // order create
+            const data = {...req.body, ...{user:req.user.user_id}};
+            let order:any = await new Order(data).save();
+
+            // wallet transaction create for order
+            const transaction_data = {
+                user:req.user.user_id,
+                channel:'order',
+                transaction_mode:'debit',
+                amount:req.body.amount,
+                transaction_id:req.body.payment_id,
+                item_object:req.body.item_data,
+                transaction_obj:req.body.payment_data
+            };
+            let walletTransaction:any = await new WalletTransaction(transaction_data).save();
+
+            // user wallet update
+            const user_wallet = await User.findOneAndUpdate({_id: req.user.user_id}, { $inc: { wallet: -req.body.amount} }, {new: true, useFindAndModify: false});
+
+            res.json({
+                message:'Order Save Successfully',
+                data:order,
+                walletTransaction:walletTransaction,
+                user_wallet:user_wallet,
+                status_code:200
+            });
+
+        } catch (e) {
+            next(e)
+        }
+        
+   
+    }
+
+    static async productCreate(req, res, next){  
+
+        try {
+            // order create
+            const data = {...req.body, ...{user:req.user.user_id}};
+            let order:any = await new Order(data).save();
+
+            // wallet transaction create for order
+            const transaction_data = {
+                user:req.user.user_id,
+                channel:'order',
+                transaction_mode:'debit',
+                amount:req.body.amount,
+                transaction_id:req.body.payment_id,
+                item_object:req.body.item_data,
+                transaction_obj:req.body.payment_data
+            };
+            let walletTransaction:any = await new WalletTransaction(transaction_data).save();
+
+            // user wallet update
+            const user_wallet = await User.findOneAndUpdate({_id: req.user.user_id}, { $inc: { wallet: -req.body.amount} }, {new: true, useFindAndModify: false});
+
+            res.json({
+                message:'Order Save Successfully',
+                data:order,
+                walletTransaction:walletTransaction,
+                user_wallet:user_wallet,
+                status_code:200
+            });
+
+        } catch (e) {
+            next(e)
+        }
+        
+   
+    }
+
+
     static async deposit(req, res, next){  
 
         try {
