@@ -6,7 +6,7 @@ const Event_1 = require("../../models/Event");
 class EventValidators {
     static create() {
         return [
-            (0, express_validator_1.body)('event', 'event Is Required').custom((event, { req }) => {
+            express_validator_1.body('event', 'event Is Required').custom((event, { req }) => {
                 return Event_1.default.findOne({ event: event }).then(event => {
                     if (event) {
                         throw new Error('Event Already Exist');
@@ -19,7 +19,7 @@ class EventValidators {
         ];
     }
     static Event() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Event_1.default.findOne({ _id: id }, { __v: 0 }).then((event) => {
                     if (event) {
                         req.event = event;
@@ -32,7 +32,7 @@ class EventValidators {
             })];
     }
     static update() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Event_1.default.findOne({ _id: id }, { __v: 0 }).then((event) => {
                     if (event) {
                         req.event = event;
@@ -45,7 +45,7 @@ class EventValidators {
             })];
     }
     static delete() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Event_1.default.findOne({ _id: id }, { __v: 0 }).then((event) => {
                     if (event) {
                         req.event = event;

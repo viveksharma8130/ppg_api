@@ -34,7 +34,7 @@ class Server {
         this.configureBodyParser();
     }
     connectMongodb() {
-        const databaseUrl = (0, env_1.getEnvironmentVariables)().db_url;
+        const databaseUrl = env_1.getEnvironmentVariables().db_url;
         mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
             console.log('mongoDb Connected');
         });
@@ -66,7 +66,7 @@ class Server {
     error404Handler() {
         this.app.use((req, res) => {
             res.status(200).json({
-                message: 'Not Found !' + (0, env_1.getEnvironmentVariables)().jwt_secret,
+                message: 'Not Found !' + env_1.getEnvironmentVariables().jwt_secret,
                 status_code: 404
             });
         });

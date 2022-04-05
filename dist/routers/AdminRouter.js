@@ -6,7 +6,7 @@ const GlobalMiddleWare_1 = require("../middlewares/GlobalMiddleWare");
 const AdminValidators_1 = require("./validators/AdminValidators");
 class AdminRouter {
     constructor() {
-        this.router = (0, express_1.Router)();
+        this.router = express_1.Router();
         this.getRoutes();
         this.postRoutes();
         this.patchRoutes();

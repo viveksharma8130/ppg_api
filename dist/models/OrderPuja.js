@@ -25,4 +25,4 @@ const OrderPujaSchema = new mongoose.Schema({
 }, { id: false });
 OrderPujaSchema.set('toObject', { virtuals: true });
 OrderPujaSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('order_pujas', OrderPujaSchema);
+exports.default = mongoose_1.model('order_pujas', OrderPujaSchema);

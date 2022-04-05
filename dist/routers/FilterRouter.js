@@ -7,7 +7,7 @@ const Utils_1 = require("../utils/Utils");
 const FilterValidators_1 = require("./validators/FilterValidators");
 class FilterRouter {
     constructor() {
-        this.router = (0, express_1.Router)();
+        this.router = express_1.Router();
         this.getRoutes();
         this.postRoutes();
         this.patchRoutes();

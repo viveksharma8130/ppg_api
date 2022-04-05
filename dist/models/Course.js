@@ -19,4 +19,4 @@ const CourseSchema = new mongoose.Schema({
 }, { id: false });
 CourseSchema.set('toObject', { virtuals: true });
 CourseSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('courses', CourseSchema);
+exports.default = mongoose_1.model('courses', CourseSchema);

@@ -6,7 +6,7 @@ const GlobalMiddleWare_1 = require("../middlewares/GlobalMiddleWare");
 const RazorpayValidators_1 = require("./validators/RazorpayValidators");
 class RazorpayRouter {
     constructor() {
-        this.router = (0, express_1.Router)();
+        this.router = express_1.Router();
         this.getRoutes();
         this.postRoutes();
     }

@@ -6,7 +6,7 @@ const Filter_1 = require("../../models/Filter");
 class FilterValidators {
     static create() {
         return [
-            (0, express_validator_1.body)('title', 'title Is Required').custom((title, { req }) => {
+            express_validator_1.body('title', 'title Is Required').custom((title, { req }) => {
                 return Filter_1.default.findOne({ title: title }).then(filter => {
                     if (filter) {
                         throw new Error('Filter Already Exist');
@@ -19,7 +19,7 @@ class FilterValidators {
         ];
     }
     static filter() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Filter_1.default.findOne({ _id: id }, { __v: 0 }).then((filter) => {
                     if (filter) {
                         req.filter = filter;
@@ -32,7 +32,7 @@ class FilterValidators {
             })];
     }
     static update() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Filter_1.default.findOne({ _id: id }, { __v: 0 }).then((filter) => {
                     if (filter) {
                         req.filter = filter;
@@ -45,7 +45,7 @@ class FilterValidators {
             })];
     }
     static delete() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Filter_1.default.findOne({ _id: id }, { __v: 0 }).then((filter) => {
                     if (filter) {
                         req.filter = filter;

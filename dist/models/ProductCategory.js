@@ -16,4 +16,4 @@ const ProductCategorySchema = new mongoose.Schema({
 }, { id: false });
 ProductCategorySchema.set('toObject', { virtuals: true });
 ProductCategorySchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('product_categories', ProductCategorySchema);
+exports.default = mongoose_1.model('product_categories', ProductCategorySchema);

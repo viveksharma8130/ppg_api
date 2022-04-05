@@ -6,7 +6,7 @@ const Course_1 = require("../../models/Course");
 class CourseValidators {
     static create() {
         return [
-            (0, express_validator_1.body)('name', 'name Is Required').custom((name, { req }) => {
+            express_validator_1.body('name', 'name Is Required').custom((name, { req }) => {
                 return Course_1.default.findOne({ name: name }).then(course => {
                     if (course) {
                         throw new Error('Course Already Exist');
@@ -16,12 +16,12 @@ class CourseValidators {
                     }
                 });
             }),
-            (0, express_validator_1.body)('price', 'price is Required').isString(),
-            (0, express_validator_1.body)('validity', 'validity Is Required').isNumeric(),
+            express_validator_1.body('price', 'price is Required').isString(),
+            express_validator_1.body('validity', 'validity Is Required').isNumeric(),
         ];
     }
     static course() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Course_1.default.findOne({ _id: id }, { __v: 0 }).then((course) => {
                     if (course) {
                         req.course = course;
@@ -34,7 +34,7 @@ class CourseValidators {
             })];
     }
     static update() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Course_1.default.findOne({ _id: id }, { __v: 0 }).then((course) => {
                     if (course) {
                         req.course = course;
@@ -47,7 +47,7 @@ class CourseValidators {
             })];
     }
     static delete() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Course_1.default.findOne({ _id: id }, { __v: 0 }).then((course) => {
                     if (course) {
                         req.course = course;

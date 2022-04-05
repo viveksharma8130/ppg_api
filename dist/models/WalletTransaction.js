@@ -18,4 +18,4 @@ const WalletTransactionSchema = new mongoose.Schema({
 }, { id: false });
 WalletTransactionSchema.set('toObject', { virtuals: true });
 WalletTransactionSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('wallet_transactions', WalletTransactionSchema);
+exports.default = mongoose_1.model('wallet_transactions', WalletTransactionSchema);

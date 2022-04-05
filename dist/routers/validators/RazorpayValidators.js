@@ -5,17 +5,17 @@ const express_validator_1 = require("express-validator");
 class RazorpayValidators {
     static order() {
         return [
-            (0, express_validator_1.query)('amount', 'amount is Required').isString(),
-            (0, express_validator_1.query)('currency', 'currency is Required').isString(),
-            (0, express_validator_1.query)('receipt', 'receipt is Required').isString(),
-            (0, express_validator_1.query)('payment_capture', 'payment_capture is Required').isString(),
+            express_validator_1.query('amount', 'amount is Required').isString(),
+            express_validator_1.query('currency', 'currency is Required').isString(),
+            express_validator_1.query('receipt', 'receipt is Required').isString(),
+            express_validator_1.query('payment_capture', 'payment_capture is Required').isString(),
         ];
     }
     static capture() {
         return [
-            (0, express_validator_1.body)('amount', 'amount is Required').isNumeric,
-            (0, express_validator_1.body)('currency', 'currency is Required').isString(),
-            (0, express_validator_1.param)('paymentId', 'paymentId is Required').custom((paymentId, { req }) => {
+            express_validator_1.body('amount', 'amount is Required').isNumeric,
+            express_validator_1.body('currency', 'currency is Required').isString(),
+            express_validator_1.param('paymentId', 'paymentId is Required').custom((paymentId, { req }) => {
                 req.paymentId = paymentId;
                 return true;
             }),
@@ -23,7 +23,7 @@ class RazorpayValidators {
     }
     static fetch() {
         return [
-            (0, express_validator_1.param)('paymentId', 'paymentId is Required').custom((paymentId, { req }) => {
+            express_validator_1.param('paymentId', 'paymentId is Required').custom((paymentId, { req }) => {
                 req.paymentId = paymentId;
                 return true;
             }),

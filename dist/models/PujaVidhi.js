@@ -20,4 +20,4 @@ const PujaVidhiSchema = new mongoose.Schema({
 }, { id: false });
 PujaVidhiSchema.set('toObject', { virtuals: true });
 PujaVidhiSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('pujavidhis', PujaVidhiSchema);
+exports.default = mongoose_1.model('pujavidhis', PujaVidhiSchema);

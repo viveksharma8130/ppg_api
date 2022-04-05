@@ -13,5 +13,5 @@ const adminSchema = new mongoose.Schema({
     created_at: { type: Date, required: true, default: Utils_1.Utils.indianTimeZone },
     updated_at: { type: Date, required: true, default: Utils_1.Utils.indianTimeZone },
 }, { id: false });
-exports.default = (0, mongoose_1.model)('admin', adminSchema);
+exports.default = mongoose_1.model('admin', adminSchema);
 // Admin Should only be created by manually

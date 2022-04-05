@@ -14,4 +14,4 @@ const PackageSchema = new mongoose.Schema({
 }, { id: false });
 PackageSchema.set('toObject', { virtuals: true });
 PackageSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('packages', PackageSchema);
+exports.default = mongoose_1.model('packages', PackageSchema);

@@ -18,7 +18,8 @@ export class RazorpayController {
                 if(err){
                     console.log(err);
                     return res.status(500).json({
-                        message: "Something error!s"
+                        message: "Something error!s",
+                        error:err
                     })
                 }
                 return res.status(200).json(order)
@@ -26,7 +27,8 @@ export class RazorpayController {
         }catch(err){
             console.log(err);
             return res.status(500).json({
-                message: "Something error!s"
+                message: "Something error!s",
+                error:err
             })
         }
     }
@@ -45,7 +47,8 @@ export class RazorpayController {
                 async function(err,response,body){   
                     if(err){
                         return res.status(500).json({
-                            message: "Something error!s"
+                            message: "Something error!s",
+                            error:err
                         })
                     }
                     return res.status(200).json(body);
@@ -54,7 +57,8 @@ export class RazorpayController {
         }
         catch(err){
             return res.status(500).json({
-                message: err.message
+                message: err.message,
+                error:err
             })
         }
     }
@@ -69,7 +73,8 @@ export class RazorpayController {
                 async function(err,response,body){   
                     if(err){
                         return res.status(500).json({
-                            message: "Something error!s"
+                            message: "Something error!s",
+                            error:err
                         })
                     }
                     return res.status(200).json(body);
@@ -78,7 +83,8 @@ export class RazorpayController {
         }
         catch(err){
             return res.status(500).json({
-                message: err.message
+                message: err.message,
+                error:err
             })
         }
     }

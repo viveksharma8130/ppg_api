@@ -16,7 +16,7 @@ const env_1 = require("../environments/env");
 const User_1 = require("../models/User");
 class GlobalMiddleWare {
     static checkError(req, res, next) {
-        const error = (0, express_validator_1.validationResult)(req);
+        const error = express_validator_1.validationResult(req);
         const errorStatus = req.errorStatus || 400;
         if (!error.isEmpty()) {
             req.errorStatus = errorStatus;
@@ -32,7 +32,7 @@ class GlobalMiddleWare {
             const authHeader = req.headers.authorization;
             const token = authHeader ? authHeader.slice(7, authHeader.length) : null;
             try {
-                Jwt.verify(token, (0, env_1.getEnvironmentVariables)().jwt_secret, ((err, decoded) => __awaiter(this, void 0, void 0, function* () {
+                Jwt.verify(token, env_1.getEnvironmentVariables().jwt_secret, ((err, decoded) => __awaiter(this, void 0, void 0, function* () {
                     if (err) {
                         req.errorStatus = 401;
                         next(err);
@@ -66,7 +66,7 @@ class GlobalMiddleWare {
             const authHeader = req.headers.authorization;
             const token = authHeader ? authHeader.slice(7, authHeader.length) : null;
             try {
-                Jwt.verify(token, (0, env_1.getEnvironmentVariables)().jwt_secret, ((err, decoded) => __awaiter(this, void 0, void 0, function* () {
+                Jwt.verify(token, env_1.getEnvironmentVariables().jwt_secret, ((err, decoded) => __awaiter(this, void 0, void 0, function* () {
                     if (err) {
                         next();
                     }
@@ -98,7 +98,7 @@ class GlobalMiddleWare {
             const authHeader = req.headers.authorization;
             const token = authHeader ? authHeader.slice(7, authHeader.length) : null;
             try {
-                Jwt.verify(token, (0, env_1.getEnvironmentVariables)().jwt_secret, ((err, decoded) => __awaiter(this, void 0, void 0, function* () {
+                Jwt.verify(token, env_1.getEnvironmentVariables().jwt_secret, ((err, decoded) => __awaiter(this, void 0, void 0, function* () {
                     if (err) {
                         req.errorStatus = 401;
                         next(err);
@@ -124,7 +124,7 @@ class GlobalMiddleWare {
             const authHeader = req.headers.authorization;
             const token = authHeader ? authHeader.slice(7, authHeader.length) : null;
             try {
-                Jwt.verify(token, (0, env_1.getEnvironmentVariables)().jwt_secret, ((err, decoded) => {
+                Jwt.verify(token, env_1.getEnvironmentVariables().jwt_secret, ((err, decoded) => {
                     if (err) {
                         req.errorStatus = 401;
                         next(err);

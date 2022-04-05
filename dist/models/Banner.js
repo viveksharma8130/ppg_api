@@ -16,4 +16,4 @@ const BannerSchema = new mongoose.Schema({
 }, { id: false });
 BannerSchema.set('toObject', { virtuals: true });
 BannerSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('banners', BannerSchema);
+exports.default = mongoose_1.model('banners', BannerSchema);

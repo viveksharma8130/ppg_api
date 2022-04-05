@@ -6,7 +6,7 @@ const Category_1 = require("../../models/Category");
 class CategoryValidators {
     static create() {
         return [
-            (0, express_validator_1.body)('category', 'Category Is Required').custom((category, { req }) => {
+            express_validator_1.body('category', 'Category Is Required').custom((category, { req }) => {
                 return Category_1.default.findOne({ category: category }).then(category => {
                     if (category) {
                         throw new Error('Category Already Exist');
@@ -19,7 +19,7 @@ class CategoryValidators {
         ];
     }
     static category() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Category_1.default.findOne({ _id: id }, { __v: 0 }).populate('filter').then((category) => {
                     if (category) {
                         req.category = category;
@@ -32,7 +32,7 @@ class CategoryValidators {
             })];
     }
     static update() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Category_1.default.findOne({ _id: id }, { __v: 0 }).then((category) => {
                     if (category) {
                         req.category = category;
@@ -45,7 +45,7 @@ class CategoryValidators {
             })];
     }
     static delete() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Category_1.default.findOne({ _id: id }, { __v: 0 }).then((category) => {
                     if (category) {
                         req.category = category;

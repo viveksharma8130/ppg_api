@@ -37,7 +37,7 @@ class WalletTransactionController {
                         WalletTransaction_id: walletTransaction._id,
                         email: email
                     };
-                    const token = Jwt.sign(para, (0, env_1.getEnvironmentVariables)().jwt_secret, { expiresIn: '120d' });
+                    const token = Jwt.sign(para, env_1.getEnvironmentVariables().jwt_secret, { expiresIn: '120d' });
                     const data = {
                         message: 'Success',
                         token: token,
@@ -63,7 +63,7 @@ class WalletTransactionController {
                     plainPassword: password,
                     encryptedPassword: WalletTransaction.password
                 });
-                const token = Jwt.sign({ email: WalletTransaction.email, WalletTransaction_id: WalletTransaction._id }, (0, env_1.getEnvironmentVariables)().jwt_secret, { expiresIn: '120d' });
+                const token = Jwt.sign({ email: WalletTransaction.email, WalletTransaction_id: WalletTransaction._id }, env_1.getEnvironmentVariables().jwt_secret, { expiresIn: '120d' });
                 const data = { token: token, data: WalletTransaction };
                 res.json(data);
             }

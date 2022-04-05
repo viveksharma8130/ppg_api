@@ -6,12 +6,12 @@ const Article_1 = require("../../models/Article");
 class ArticleValidators {
     static create() {
         return [
-            (0, express_validator_1.body)('title', 'title Is Required'),
-            (0, express_validator_1.body)('description', 'description Is Required'),
+            express_validator_1.body('title', 'title Is Required'),
+            express_validator_1.body('description', 'description Is Required'),
         ];
     }
     static Article() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Article_1.default.findOne({ _id: id }, { __v: 0 }).then((article) => {
                     if (article) {
                         req.article = article;
@@ -24,7 +24,7 @@ class ArticleValidators {
             })];
     }
     static update() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Article_1.default.findOne({ _id: id }, { __v: 0 }).then((article) => {
                     if (article) {
                         req.article = article;
@@ -37,7 +37,7 @@ class ArticleValidators {
             })];
     }
     static delete() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Article_1.default.findOne({ _id: id }, { __v: 0 }).then((article) => {
                     if (article) {
                         req.article = article;

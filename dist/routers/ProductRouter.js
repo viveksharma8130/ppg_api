@@ -7,7 +7,7 @@ const Utils_1 = require("../utils/Utils");
 const ProductValidators_1 = require("./validators/ProductValidators");
 class ProductRouter {
     constructor() {
-        this.router = (0, express_1.Router)();
+        this.router = express_1.Router();
         this.getRoutes();
         this.postRoutes();
         this.patchRoutes();

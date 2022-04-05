@@ -6,9 +6,9 @@ const ProductPackage_1 = require("../../models/ProductPackage");
 class ProductPackageValidators {
     static create() {
         return [
-            (0, express_validator_1.body)('item', 'item Is Required'),
-            (0, express_validator_1.body)('item_id', 'item_id Is Required'),
-            (0, express_validator_1.body)('validity', 'validity Is Required').custom((validity, { req }) => {
+            express_validator_1.body('item', 'item Is Required'),
+            express_validator_1.body('item_id', 'item_id Is Required'),
+            express_validator_1.body('validity', 'validity Is Required').custom((validity, { req }) => {
                 return ProductPackage_1.default.findOne({ validity: validity, item_id: req.body.item_id }).then(packages => {
                     if (packages) {
                         throw new Error('Already Exist');
@@ -18,11 +18,11 @@ class ProductPackageValidators {
                     }
                 });
             }),
-            (0, express_validator_1.body)('price', 'price Is Required')
+            express_validator_1.body('price', 'price Is Required')
         ];
     }
     static ProductPackage() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return ProductPackage_1.default.findOne({ _id: id }, { __v: 0 }).then((packages) => {
                     if (packages) {
                         req.packages = packages;
@@ -35,7 +35,7 @@ class ProductPackageValidators {
             })];
     }
     static itemProductPackage() {
-        return [(0, express_validator_1.param)('item_id').custom((item_id, { req }) => {
+        return [express_validator_1.param('item_id').custom((item_id, { req }) => {
                 return ProductPackage_1.default.find({ item_id: item_id }, { __v: 0 }).then((packages) => {
                     if (packages) {
                         req.packages = packages;
@@ -48,7 +48,7 @@ class ProductPackageValidators {
             })];
     }
     static update() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return ProductPackage_1.default.findOne({ _id: id }, { __v: 0 }).then((packages) => {
                     if (packages) {
                         req.packages = packages;
@@ -61,7 +61,7 @@ class ProductPackageValidators {
             })];
     }
     static delete() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return ProductPackage_1.default.findOne({ _id: id }, { __v: 0 }).then((packages) => {
                     if (packages) {
                         req.packages = packages;

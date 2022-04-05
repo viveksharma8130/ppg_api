@@ -26,4 +26,4 @@ PujaSchema.virtual('packages', {
     localField: '_id',
     foreignField: 'puja_id'
 });
-exports.default = (0, mongoose_1.model)('pujas', PujaSchema);
+exports.default = mongoose_1.model('pujas', PujaSchema);

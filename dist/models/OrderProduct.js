@@ -16,4 +16,4 @@ const OrderProductSchema = new mongoose.Schema({
 }, { id: false });
 OrderProductSchema.set('toObject', { virtuals: true });
 OrderProductSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('order_products', OrderProductSchema);
+exports.default = mongoose_1.model('order_products', OrderProductSchema);

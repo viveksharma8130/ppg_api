@@ -87,7 +87,7 @@ class UserController {
                         user_id: user._id,
                         email: email
                     };
-                    const token = Jwt.sign(para, (0, env_1.getEnvironmentVariables)().jwt_secret, { expiresIn: '120d' });
+                    const token = Jwt.sign(para, env_1.getEnvironmentVariables().jwt_secret, { expiresIn: '120d' });
                     const data = {
                         message: 'Success',
                         token: token,
@@ -113,7 +113,7 @@ class UserController {
                     plainPassword: password,
                     encryptedPassword: user.password
                 });
-                const token = Jwt.sign({ email: user.email, user_id: user._id }, (0, env_1.getEnvironmentVariables)().jwt_secret, { expiresIn: '120d' });
+                const token = Jwt.sign({ email: user.email, user_id: user._id }, env_1.getEnvironmentVariables().jwt_secret, { expiresIn: '120d' });
                 const data = { token: token, data: user };
                 res.json(data);
             }

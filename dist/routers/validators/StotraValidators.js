@@ -6,16 +6,16 @@ const Stotra_1 = require("../../models/Stotra");
 class StotraValidators {
     static create() {
         return [
-            (0, express_validator_1.body)('name', 'name Is Required'),
-            (0, express_validator_1.body)('free', 'free Is Required'),
-            (0, express_validator_1.body)('price', 'price Is Required'),
-            (0, express_validator_1.body)('discounted_price', 'discounted_price Is Required'),
-            (0, express_validator_1.body)('author', 'author Is Required'),
-            (0, express_validator_1.body)('validity', 'validity Is Required').isNumeric(),
+            express_validator_1.body('name', 'name Is Required'),
+            express_validator_1.body('free', 'free Is Required'),
+            express_validator_1.body('price', 'price Is Required'),
+            express_validator_1.body('discounted_price', 'discounted_price Is Required'),
+            express_validator_1.body('author', 'author Is Required'),
+            express_validator_1.body('validity', 'validity Is Required').isNumeric(),
         ];
     }
     static Stotra() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Stotra_1.default.findOne({ _id: id }, { __v: 0 }).then((stotra) => {
                     if (stotra) {
                         req.stotra = stotra;
@@ -28,7 +28,7 @@ class StotraValidators {
             })];
     }
     static StotraSubject() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Stotra_1.default.find({ subject: id }, { __v: 0 }).then((stotra) => {
                     if (stotra) {
                         req.stotra = stotra;
@@ -41,7 +41,7 @@ class StotraValidators {
             })];
     }
     static StotraCourse() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Stotra_1.default.find({ course: id }, { __v: 0 }).then((stotra) => {
                     if (stotra) {
                         req.stotra = stotra;
@@ -54,7 +54,7 @@ class StotraValidators {
             })];
     }
     static update() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Stotra_1.default.findOne({ _id: id }, { __v: 0 }).then((stotra) => {
                     if (stotra) {
                         req.stotra = stotra;
@@ -67,7 +67,7 @@ class StotraValidators {
             })];
     }
     static delete() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Stotra_1.default.findOne({ _id: id }, { __v: 0 }).then((stotra) => {
                     if (stotra) {
                         req.stotra = stotra;

@@ -15,4 +15,4 @@ const ArticleSchema = new mongoose.Schema({
 }, { id: false });
 ArticleSchema.set('toObject', { virtuals: true });
 ArticleSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('articles', ArticleSchema);
+exports.default = mongoose_1.model('articles', ArticleSchema);

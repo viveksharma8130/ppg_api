@@ -14,4 +14,4 @@ const CategorySchema = new mongoose.Schema({
 }, { id: false });
 CategorySchema.set('toObject', { virtuals: true });
 CategorySchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('categorys', CategorySchema);
+exports.default = mongoose_1.model('categorys', CategorySchema);

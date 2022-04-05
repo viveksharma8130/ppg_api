@@ -13,4 +13,4 @@ const userSessionSchema = new mongoose.Schema({
 }, { id: false });
 userSessionSchema.set('toObject', { virtuals: true });
 userSessionSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('user_sessions', userSessionSchema);
+exports.default = mongoose_1.model('user_sessions', userSessionSchema);

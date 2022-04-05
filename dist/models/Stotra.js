@@ -22,4 +22,4 @@ const StotraSchema = new mongoose.Schema({
 }, { id: false });
 StotraSchema.set('toObject', { virtuals: true });
 StotraSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('stotras', StotraSchema);
+exports.default = mongoose_1.model('stotras', StotraSchema);

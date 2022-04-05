@@ -6,7 +6,7 @@ const Product_1 = require("../../models/Product");
 class ProductValidators {
     static create() {
         return [
-            (0, express_validator_1.body)('name', 'name Is Required').custom((name, { req }) => {
+            express_validator_1.body('name', 'name Is Required').custom((name, { req }) => {
                 return Product_1.default.findOne({ name: name }).then(product => {
                     if (product) {
                         throw new Error('Product Already Exist');
@@ -16,11 +16,11 @@ class ProductValidators {
                     }
                 });
             }),
-            (0, express_validator_1.body)('variant', 'variant is Required'),
+            express_validator_1.body('variant', 'variant is Required'),
         ];
     }
     static product() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Product_1.default.findOne({ _id: id }, { __v: 0 }).then((product) => {
                     if (product) {
                         req.product = product;
@@ -33,7 +33,7 @@ class ProductValidators {
             })];
     }
     static update() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Product_1.default.findOne({ _id: id }, { __v: 0 }).then((product) => {
                     if (product) {
                         req.product = product;
@@ -46,7 +46,7 @@ class ProductValidators {
             })];
     }
     static delete() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Product_1.default.findOne({ _id: id }, { __v: 0 }).then((product) => {
                     if (product) {
                         req.product = product;

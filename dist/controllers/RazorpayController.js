@@ -28,7 +28,8 @@ class RazorpayController {
                         if (err) {
                             console.log(err);
                             return res.status(500).json({
-                                message: "Something error!s"
+                                message: "Something error!s",
+                                error: err
                             });
                         }
                         return res.status(200).json(order);
@@ -38,7 +39,8 @@ class RazorpayController {
             catch (err) {
                 console.log(err);
                 return res.status(500).json({
-                    message: "Something error!s"
+                    message: "Something error!s",
+                    error: err
                 });
             }
         });
@@ -57,7 +59,8 @@ class RazorpayController {
                     return __awaiter(this, void 0, void 0, function* () {
                         if (err) {
                             return res.status(500).json({
-                                message: "Something error!s"
+                                message: "Something error!s",
+                                error: err
                             });
                         }
                         return res.status(200).json(body);
@@ -66,7 +69,8 @@ class RazorpayController {
             }
             catch (err) {
                 return res.status(500).json({
-                    message: err.message
+                    message: err.message,
+                    error: err
                 });
             }
         });
@@ -81,7 +85,8 @@ class RazorpayController {
                     return __awaiter(this, void 0, void 0, function* () {
                         if (err) {
                             return res.status(500).json({
-                                message: "Something error!s"
+                                message: "Something error!s",
+                                error: err
                             });
                         }
                         return res.status(200).json(body);
@@ -90,7 +95,8 @@ class RazorpayController {
             }
             catch (err) {
                 return res.status(500).json({
-                    message: err.message
+                    message: err.message,
+                    error: err
                 });
             }
         });

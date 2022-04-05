@@ -12,4 +12,4 @@ const EventSchema = new mongoose.Schema({
 }, { id: false });
 EventSchema.set('toObject', { virtuals: true });
 EventSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('events', EventSchema);
+exports.default = mongoose_1.model('events', EventSchema);

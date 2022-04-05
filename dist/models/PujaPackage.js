@@ -14,4 +14,4 @@ const PujaPackageSchema = new mongoose.Schema({
 }, { id: false });
 PujaPackageSchema.set('toObject', { virtuals: true });
 PujaPackageSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('puja_packages', PujaPackageSchema);
+exports.default = mongoose_1.model('puja_packages', PujaPackageSchema);

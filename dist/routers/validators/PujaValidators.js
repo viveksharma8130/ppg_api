@@ -6,7 +6,7 @@ const Puja_1 = require("../../models/Puja");
 class PujaValidators {
     static create() {
         return [
-            (0, express_validator_1.body)('name', 'name Is Required').custom((name, { req }) => {
+            express_validator_1.body('name', 'name Is Required').custom((name, { req }) => {
                 return Puja_1.default.findOne({ name: name }).then(puja => {
                     if (puja) {
                         throw new Error('Puja Already Exist');
@@ -21,7 +21,7 @@ class PujaValidators {
         ];
     }
     static Puja() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Puja_1.default.findOne({ _id: id }, { __v: 0 }).then((puja) => {
                     if (puja) {
                         req.puja = puja;
@@ -34,7 +34,7 @@ class PujaValidators {
             })];
     }
     static update() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Puja_1.default.findOne({ _id: id }, { __v: 0 }).populate({ path: 'packages' }).then((puja) => {
                     if (puja) {
                         req.puja = puja;
@@ -47,7 +47,7 @@ class PujaValidators {
             })];
     }
     static delete() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Puja_1.default.findOne({ _id: id }, { __v: 0 }).then((puja) => {
                     if (puja) {
                         req.puja = puja;
@@ -61,19 +61,19 @@ class PujaValidators {
     }
     static orderCreate() {
         return [
-            (0, express_validator_1.body)('puja_id', 'puja_id Is Required'),
-            (0, express_validator_1.body)('puja_amount', 'amount Is Required'),
-            (0, express_validator_1.body)('puja_data', 'payment_data Is Required'),
-            (0, express_validator_1.body)('amount', 'amount Is Required'),
-            (0, express_validator_1.body)('puja_date', 'puja_date Is Required'),
-            (0, express_validator_1.body)('samagri_status', 'samagri_status Is Required'),
-            (0, express_validator_1.body)('payment_id', 'payment_id Is Required'),
-            (0, express_validator_1.body)('payment_data', 'payment_data Is Required'),
-            (0, express_validator_1.body)('item_data', 'item_data Is Required'),
-            (0, express_validator_1.body)('name', 'name Is Required'),
-            (0, express_validator_1.body)('address', 'address Is Required'),
-            (0, express_validator_1.body)('phone', 'phone Is Required'),
-            (0, express_validator_1.body)('status', 'status Is Required'),
+            express_validator_1.body('puja_id', 'puja_id Is Required'),
+            express_validator_1.body('puja_amount', 'amount Is Required'),
+            express_validator_1.body('puja_data', 'payment_data Is Required'),
+            express_validator_1.body('amount', 'amount Is Required'),
+            express_validator_1.body('puja_date', 'puja_date Is Required'),
+            express_validator_1.body('samagri_status', 'samagri_status Is Required'),
+            express_validator_1.body('payment_id', 'payment_id Is Required'),
+            express_validator_1.body('payment_data', 'payment_data Is Required'),
+            express_validator_1.body('item_data', 'item_data Is Required'),
+            express_validator_1.body('name', 'name Is Required'),
+            express_validator_1.body('address', 'address Is Required'),
+            express_validator_1.body('phone', 'phone Is Required'),
+            express_validator_1.body('status', 'status Is Required'),
         ];
     }
 }

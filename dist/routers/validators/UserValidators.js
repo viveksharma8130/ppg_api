@@ -9,9 +9,9 @@ const UserSession_1 = require("../../models/UserSession");
 class UserValidators {
     static session() {
         return [
-            (0, express_validator_1.body)('firebase_token', 'firebase_token is Required').isString(),
-            (0, express_validator_1.body)('device_detail', 'device_detail is Required').isString(),
-            (0, express_validator_1.body)('device_id', 'device_id Is Required').isString().custom((device_id, { req }) => {
+            express_validator_1.body('firebase_token', 'firebase_token is Required').isString(),
+            express_validator_1.body('device_detail', 'device_detail is Required').isString(),
+            express_validator_1.body('device_id', 'device_id Is Required').isString().custom((device_id, { req }) => {
                 return UserSession_1.default.findOne({ device_id: device_id }).then(userSession => {
                     if (userSession) {
                         req.action = 'update';
@@ -27,9 +27,9 @@ class UserValidators {
     }
     static signup() {
         return [
-            (0, express_validator_1.body)('name', 'name is Required').isString(),
-            (0, express_validator_1.body)('password', 'password is Required').isString(),
-            (0, express_validator_1.body)('email', 'email Is Required').isEmail().custom((email, { req }) => {
+            express_validator_1.body('name', 'name is Required').isString(),
+            express_validator_1.body('password', 'password is Required').isString(),
+            express_validator_1.body('email', 'email Is Required').isEmail().custom((email, { req }) => {
                 return User_1.default.findOne({ email: email }).then(user => {
                     if (user) {
                         throw new Error('User Already Exist');
@@ -39,7 +39,7 @@ class UserValidators {
                     }
                 });
             }),
-            (0, express_validator_1.body)('phone', 'Phone with numeric value Is Required').isNumeric().isLength({ min: 10, max: 10 }).withMessage('Phone must be 10 digit').custom((phone, { req }) => {
+            express_validator_1.body('phone', 'Phone with numeric value Is Required').isNumeric().isLength({ min: 10, max: 10 }).withMessage('Phone must be 10 digit').custom((phone, { req }) => {
                 return User_1.default.findOne({ phone: phone }).then(user => {
                     if (user) {
                         throw new Error('User Already Exist');
@@ -52,7 +52,7 @@ class UserValidators {
         ];
     }
     static login() {
-        return [(0, express_validator_1.query)('email', 'Email is Required').isEmail()
+        return [express_validator_1.query('email', 'Email is Required').isEmail()
                 .custom((email, { req }) => {
                 return User_1.default.findOne({ email: email, status: 1 }).then(user => {
                     if (user) {
@@ -63,12 +63,12 @@ class UserValidators {
                         throw new Error('User Does Not Exist');
                     }
                 });
-            }), (0, express_validator_1.query)('password', 'Password is Required').isString()];
+            }), express_validator_1.query('password', 'Password is Required').isString()];
     }
     static passwordForgot() {
         return [
-            (0, express_validator_1.body)('password', 'Alphanumeric password is Required').isAlphanumeric(),
-            (0, express_validator_1.body)('email', 'Email Is Required').isEmail().custom((email, { req }) => {
+            express_validator_1.body('password', 'Alphanumeric password is Required').isAlphanumeric(),
+            express_validator_1.body('email', 'Email Is Required').isEmail().custom((email, { req }) => {
                 return User_1.default.findOne({ email: email }).then(user => {
                     if (user) {
                         return true;
@@ -82,8 +82,8 @@ class UserValidators {
     }
     static passwordChange() {
         return [
-            (0, express_validator_1.body)('password', 'Alphanumeric password is Required').isString(),
-            (0, express_validator_1.body)('old_password', 'Old password is Required').isString().custom((old_password, { req }) => {
+            express_validator_1.body('password', 'Alphanumeric password is Required').isString(),
+            express_validator_1.body('old_password', 'Old password is Required').isString().custom((old_password, { req }) => {
                 return User_1.default.findOne({ _id: req.user.user_id }).then(user => {
                     if (user) {
                         req.user_data = user;
@@ -97,7 +97,7 @@ class UserValidators {
         ];
     }
     static deleteUser() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return User_1.default.findOne({ _id: id }, { __v: 0 }).then((user) => {
                     if (user) {
                         req.user = user;
@@ -110,7 +110,7 @@ class UserValidators {
             })];
     }
     static update() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return User_1.default.findOne({ _id: id }, { __v: 0 }).then((user) => {
                     if (user) {
                         req.user = user;
@@ -124,9 +124,9 @@ class UserValidators {
     }
     static cartCreate() {
         return [
-            (0, express_validator_1.body)('total_amount', 'total_amount is Required').isNumeric(),
-            (0, express_validator_1.body)('quantity', 'quantity is Required').isNumeric(),
-            (0, express_validator_1.body)('product', 'product Is Required').isString().custom((product, { req }) => {
+            express_validator_1.body('total_amount', 'total_amount is Required').isNumeric(),
+            express_validator_1.body('quantity', 'quantity is Required').isNumeric(),
+            express_validator_1.body('product', 'product Is Required').isString().custom((product, { req }) => {
                 return Product_1.default.findOne({ _id: product }).then(pr => {
                     if (pr) {
                         return true;
@@ -136,7 +136,7 @@ class UserValidators {
                     }
                 });
             }),
-            (0, express_validator_1.body)('amount', 'amount is Required').isNumeric().custom((amount, { req }) => {
+            express_validator_1.body('amount', 'amount is Required').isNumeric().custom((amount, { req }) => {
                 return Cart_1.default.findOne({ product: req.body.product, user: req.user.user_id }).then(cart => {
                     if (cart) {
                         throw new Error('Product Already Exist in cart');
@@ -149,7 +149,7 @@ class UserValidators {
         ];
     }
     static cartUpdate() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Cart_1.default.findOne({ _id: id }, { __v: 0 }).then((cart) => {
                     if (cart) {
                         req.cart = cart;
@@ -162,7 +162,7 @@ class UserValidators {
             })];
     }
     static deleteCart() {
-        return [(0, express_validator_1.param)('id').custom((id, { req }) => {
+        return [express_validator_1.param('id').custom((id, { req }) => {
                 return Cart_1.default.findOne({ _id: id }, { __v: 0 }).then((cart) => {
                     if (cart) {
                         req.cart = cart;

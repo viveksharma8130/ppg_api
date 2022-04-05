@@ -16,4 +16,4 @@ const CartSchema = new mongoose.Schema({
 }, { id: false });
 CartSchema.set('toObject', { virtuals: true });
 CartSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('carts', CartSchema);
+exports.default = mongoose_1.model('carts', CartSchema);

@@ -15,4 +15,4 @@ const PaperSchema = new mongoose.Schema({
 }, { id: false });
 PaperSchema.set('toObject', { virtuals: true });
 PaperSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('papers', PaperSchema);
+exports.default = mongoose_1.model('papers', PaperSchema);

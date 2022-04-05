@@ -12,4 +12,4 @@ const FilterSchema = new mongoose.Schema({
 }, { id: false });
 FilterSchema.set('toObject', { virtuals: true });
 FilterSchema.set('toJSON', { virtuals: true });
-exports.default = (0, mongoose_1.model)('filters', FilterSchema);
+exports.default = mongoose_1.model('filters', FilterSchema);

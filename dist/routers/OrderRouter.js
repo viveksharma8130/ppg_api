@@ -6,7 +6,7 @@ const GlobalMiddleWare_1 = require("../middlewares/GlobalMiddleWare");
 const OrderValidators_1 = require("./validators/OrderValidators");
 class OrderRouter {
     constructor() {
-        this.router = (0, express_1.Router)();
+        this.router = express_1.Router();
         this.getRoutes();
         this.postRoutes();
         this.patchRoutes();

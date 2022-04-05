@@ -40,7 +40,7 @@ class AdminController {
                         admin_id: admin._id,
                         email: email
                     };
-                    const token = Jwt.sign(para, (0, env_1.getEnvironmentVariables)().jwt_secret, { expiresIn: '120d' });
+                    const token = Jwt.sign(para, env_1.getEnvironmentVariables().jwt_secret, { expiresIn: '120d' });
                     const data = {
                         message: 'Success',
                         token: token,
@@ -66,7 +66,7 @@ class AdminController {
                     plainPassword: password,
                     encryptedPassword: admin.password
                 });
-                const token = Jwt.sign({ email: admin.email, admin_id: admin._id }, (0, env_1.getEnvironmentVariables)().jwt_secret, { expiresIn: '120d' });
+                const token = Jwt.sign({ email: admin.email, admin_id: admin._id }, env_1.getEnvironmentVariables().jwt_secret, { expiresIn: '120d' });
                 const data = { token: token, data: admin };
                 res.json(data);
             }

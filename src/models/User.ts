@@ -4,8 +4,8 @@ import { Utils } from '../utils/Utils';
 
 const userSchema = new mongoose.Schema({
     user_code                : {type: String, required: true},
-    category                 : {type: mongoose.Types.ObjectId, ref: 'categorys', required: false},
-    education                : [{type: mongoose.Types.ObjectId, ref: 'educations', required: false}],
+    //category                 : {type: mongoose.Types.ObjectId, ref: 'categorys', required: false},
+    //education                : [{type: mongoose.Types.ObjectId, ref: 'educations', required: false}],
     name                     : {type: String, required: true},
     phone                    : {type: Number, required: true},
     email                    : {type: String, required: true},
