@@ -13,6 +13,7 @@ export class OrderValidators{
                     body('contact_address', 'contact_address Is Required'),
                     body('contact_phone', 'contact_phone Is Required'),
                     body('status', 'status Is Required'),
+                    body('product_data', 'product_data Is Required'),
                 ];
         
     }

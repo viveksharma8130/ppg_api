@@ -3,7 +3,7 @@ import { model } from 'mongoose';
 import { Utils } from '../utils/Utils';
 
 const OrderProductSchema = new mongoose.Schema({
-    order               : {type: mongoose.Types.ObjectId, ref: 'orders', required: true},
+    order_id            : {type: mongoose.Types.ObjectId, ref: 'orders', required: true},
     user                : {type: mongoose.Types.ObjectId, ref: 'users', required: true},
     product             : {type: mongoose.Types.ObjectId, ref: 'products', required: true},
     variant_data        : {type: String, required: true},
