@@ -28,7 +28,7 @@ class PujaRouter {
         this.router.post('/create', GlobalMiddleWare.adminAuthenticate, new Utils().s3Multer.single('image'), PujaValidators.create(), GlobalMiddleWare.checkError, PujaController.create);
         this.router.post('/excel', GlobalMiddleWare.adminAuthenticate, new Utils().excelMulter.single('excel'), PujaController.excel);
 
-        this.router.post('/order/create', GlobalMiddleWare.adminAuthenticate, PujaValidators.orderCreate(), GlobalMiddleWare.checkError, PujaController.orderCreate);
+        this.router.post('/order/create', GlobalMiddleWare.authenticate, PujaValidators.orderCreate(), GlobalMiddleWare.checkError, PujaController.orderCreate);
     }
     patchRoutes(){
         this.router.patch('/update/:id', GlobalMiddleWare.adminAuthenticate, new Utils().s3Multer.single('image'), PujaValidators.update(), GlobalMiddleWare.checkError, PujaController.update);
