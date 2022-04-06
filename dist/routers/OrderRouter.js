@@ -14,19 +14,12 @@ class OrderRouter {
     }
     getRoutes() {
         this.router.get('/all', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderController_1.OrderController.allOrder);
-        this.router.get('/transaction/all', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderController_1.OrderController.allTransaction);
         this.router.get('/user/:id', GlobalMiddleWare_1.GlobalMiddleWare.adminAuthenticate, OrderValidators_1.OrderValidators.userOrder(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.userOrder);
-        this.router.get('/item/:item', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.item(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.item);
         this.router.get('/admin/all', GlobalMiddleWare_1.GlobalMiddleWare.adminAuthenticate, OrderController_1.OrderController.allAdminOrder);
         this.router.get('/id/:id', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.order(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.order);
-        this.router.get('/order_status', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.orderStatus(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.orderStatus);
-        this.router.get('/order_status2', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.orderSt(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.orderSt);
     }
     postRoutes() {
-        this.router.post('/create', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.create(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.create);
-        this.router.post('/puja/create', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.pujaCreate(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.pujaCreate);
-        this.router.post('/product/create', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.productCreate(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.productCreate);
-        this.router.post('/deposit', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.deposit(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.deposit);
+        this.router.post('/create', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, OrderValidators_1.OrderValidators.create(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.productCreate);
     }
     patchRoutes() {
         this.router.patch('/update/:id', GlobalMiddleWare_1.GlobalMiddleWare.adminAuthenticate, OrderValidators_1.OrderValidators.update(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, OrderController_1.OrderController.update);
