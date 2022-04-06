@@ -20,7 +20,7 @@ class PujaRouter {
         this.router.get('/home/all', GlobalMiddleWare_1.GlobalMiddleWare.loginAuthenticate, PujaController_1.PujaController.allHomePuja);
         this.router.get('/admin/all', GlobalMiddleWare_1.GlobalMiddleWare.adminAuthenticate, PujaController_1.PujaController.allAdminPuja);
         this.router.get('/order/all', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, PujaController_1.PujaController.allOrder);
-        this.router.get('/order/admin/all', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, PujaController_1.PujaController.allAdminOrder);
+        this.router.get('/order/admin/all', GlobalMiddleWare_1.GlobalMiddleWare.adminAuthenticate, PujaController_1.PujaController.allAdminOrder);
     }
     postRoutes() {
         this.router.post('/create', GlobalMiddleWare_1.GlobalMiddleWare.adminAuthenticate, new Utils_1.Utils().s3Multer.single('image'), PujaValidators_1.PujaValidators.create(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, PujaController_1.PujaController.create);
