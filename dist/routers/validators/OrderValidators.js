@@ -13,7 +13,6 @@ class OrderValidators {
             express_validator_1.body('contact_address', 'contact_address Is Required'),
             express_validator_1.body('contact_phone', 'contact_phone Is Required'),
             express_validator_1.body('status', 'status Is Required'),
-            express_validator_1.body('product_data', 'product_data Is Required'),
         ];
     }
     static order() {

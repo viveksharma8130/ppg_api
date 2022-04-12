@@ -12,7 +12,7 @@ const OrderSchema = new mongoose.Schema({
     contact_name: { type: String, required: true },
     contact_address: { type: String, required: true },
     contact_phone: { type: String, required: true },
-    product_data: { type: String, required: true },
+    product_data: { type: String, required: false },
     status: { type: String, required: true, enum: ['success', 'order_dispatched', 'order_delivered'] },
     created_at: { type: Date, required: true, default: Utils_1.Utils.indianTimeZone },
     updated_at: { type: Date, required: true, default: Utils_1.Utils.indianTimeZone },

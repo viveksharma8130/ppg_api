@@ -7,6 +7,7 @@ const OrderProductSchema = new mongoose.Schema({
     order_id: { type: mongoose.Types.ObjectId, ref: 'orders', required: true },
     user: { type: mongoose.Types.ObjectId, ref: 'users', required: true },
     product: { type: mongoose.Types.ObjectId, ref: 'products', required: true },
+    product_variant: { type: mongoose.Types.ObjectId, ref: 'product_variants', required: false },
     variant_data: { type: String, required: true },
     amount: { type: Number, required: true },
     quantity: { type: Number, required: true, default: 1 },
