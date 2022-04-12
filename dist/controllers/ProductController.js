@@ -116,7 +116,7 @@ class ProductController {
     static allProduct(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const product = yield Product_1.default.find({ status: true }, { __v: 0 }).sort({ sequence: 1 });
+                const product = yield Product_1.default.find({ status: true }, { __v: 0 }).populate({ path: 'variants' }).sort({ sequence: 1 });
                 let course_array = [];
                 for (let data of product) {
                     let myData = data.toObject();
@@ -156,7 +156,7 @@ class ProductController {
     static allHomeProduct(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const product = yield Product_1.default.find({ status: true, ishome: true }, { __v: 0 }).sort({ sequence: 1 });
+                const product = yield Product_1.default.find({ status: true, ishome: true }, { __v: 0 }).populate({ path: 'variants' }).sort({ sequence: 1 });
                 let course_array = [];
                 for (let data of product) {
                     let myData = data.toObject();
@@ -196,7 +196,7 @@ class ProductController {
     static allAdminProduct(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const product = yield Product_1.default.find().sort({ sequence: 1 });
+                const product = yield Product_1.default.find().populate({ path: 'variants' }).sort({ sequence: 1 });
                 const data = {
                     message: 'Success',
                     data: product

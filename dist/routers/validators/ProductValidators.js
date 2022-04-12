@@ -16,12 +16,11 @@ class ProductValidators {
                     }
                 });
             }),
-            express_validator_1.body('variant', 'variant is Required'),
         ];
     }
     static product() {
         return [express_validator_1.param('id').custom((id, { req }) => {
-                return Product_1.default.findOne({ _id: id }, { __v: 0 }).then((product) => {
+                return Product_1.default.findOne({ _id: id }, { __v: 0 }).populate({ path: 'variants' }).then((product) => {
                     if (product) {
                         req.product = product;
                         return true;
@@ -34,7 +33,7 @@ class ProductValidators {
     }
     static update() {
         return [express_validator_1.param('id').custom((id, { req }) => {
-                return Product_1.default.findOne({ _id: id }, { __v: 0 }).then((product) => {
+                return Product_1.default.findOne({ _id: id }, { __v: 0 }).populate({ path: 'variants' }).then((product) => {
                     if (product) {
                         req.product = product;
                         return true;

@@ -106,7 +106,7 @@ export class ProductController {
     static async allProduct(req, res, next){
 
         try {
-            const product = await Product.find({status:true}, {__v: 0}).sort({sequence:1});
+            const product = await Product.find({status:true}, {__v: 0}).populate({path:'variants'}).sort({sequence:1});
             let course_array =[];
             for(let data of product){
                 let myData:object = data.toObject();
@@ -146,7 +146,7 @@ export class ProductController {
     static async allHomeProduct(req, res, next){
 
         try {
-            const product = await Product.find({status:true, ishome:true}, {__v: 0}).sort({sequence:1});
+            const product = await Product.find({status:true, ishome:true}, {__v: 0}).populate({path:'variants'}).sort({sequence:1});
             let course_array =[];
             for(let data of product){
                 let myData:object = data.toObject();
@@ -186,7 +186,7 @@ export class ProductController {
     static async allAdminProduct(req, res, next){
 
         try {
-            const product = await Product.find().sort({sequence:1});
+            const product = await Product.find().populate({path:'variants'}).sort({sequence:1});
             const data = {
                 message : 'Success',
                 data:product

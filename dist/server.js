@@ -21,6 +21,7 @@ const PujaRouter_1 = require("./routers/PujaRouter");
 const ProductRouter_1 = require("./routers/ProductRouter");
 const PujaPackageRouter_1 = require("./routers/PujaPackageRouter");
 const FilterRouter_1 = require("./routers/FilterRouter");
+const ProductVariantRouter_1 = require("./routers/ProductVariantRouter");
 class Server {
     constructor() {
         this.app = express();
@@ -62,6 +63,7 @@ class Server {
         this.app.use('/api/puja', PujaRouter_1.default);
         this.app.use('/api/product', ProductRouter_1.default);
         this.app.use('/api/puja_packages', PujaPackageRouter_1.default);
+        this.app.use('/api/product_variant', ProductVariantRouter_1.default);
     }
     error404Handler() {
         this.app.use((req, res) => {

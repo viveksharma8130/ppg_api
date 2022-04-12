@@ -22,7 +22,7 @@ class PujaValidators {
     }
     static Puja() {
         return [express_validator_1.param('id').custom((id, { req }) => {
-                return Puja_1.default.findOne({ _id: id }, { __v: 0 }).then((puja) => {
+                return Puja_1.default.findOne({ _id: id }, { __v: 0 }).populate({ path: 'packages' }).then((puja) => {
                     if (puja) {
                         req.puja = puja;
                         return true;

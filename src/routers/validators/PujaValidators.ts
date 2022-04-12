@@ -25,7 +25,7 @@ export class PujaValidators{
 
     static Puja() {
         return [param('id').custom((id, {req}) => {
-            return Puja.findOne({_id: id}, {__v: 0}).then((puja) => {
+            return Puja.findOne({_id: id}, {__v: 0}).populate({path:'packages'}).then((puja) => {
                 if (puja) {
                     req.puja = puja;
                     return true;

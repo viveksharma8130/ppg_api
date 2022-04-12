@@ -16,7 +16,6 @@ export class ProductValidators{
                                     }
                                 })
                     }),
-                    body('variant', 'variant is Required'),
     
                 ];
         
@@ -24,7 +23,7 @@ export class ProductValidators{
 
     static product() {
         return [param('id').custom((id, {req}) => {
-            return Product.findOne({_id: id}, {__v: 0}).then((product) => {
+            return Product.findOne({_id: id}, {__v: 0}).populate({path:'variants'}).then((product) => {
                 if (product) {
                     req.product = product;
                     return true;
@@ -37,7 +36,7 @@ export class ProductValidators{
 
     static update() {
         return [param('id').custom((id, {req}) => {
-            return Product.findOne({_id: id}, {__v: 0}).then((product) => {
+            return Product.findOne({_id: id}, {__v: 0}).populate({path:'variants'}).then((product) => {
                 if (product) {
                     req.product = product;
                     return true;

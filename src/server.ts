@@ -18,6 +18,7 @@ import PujaRouter from './routers/PujaRouter';
 import ProductRouter from './routers/ProductRouter';
 import PujaPackageRouter from './routers/PujaPackageRouter';
 import FilterRouter from './routers/FilterRouter';
+import ProductVariantRouter from './routers/ProductVariantRouter';
 
 export class Server {
     public app: express.Application = express();
@@ -65,6 +66,7 @@ export class Server {
         this.app.use('/api/puja', PujaRouter);
         this.app.use('/api/product', ProductRouter);
         this.app.use('/api/puja_packages', PujaPackageRouter);
+        this.app.use('/api/product_variant', ProductVariantRouter);
     }
 
     error404Handler(){
