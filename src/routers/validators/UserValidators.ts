@@ -135,8 +135,8 @@ export class UserValidators{
     static cartCreate(){
 
         return  [ 
-                    body('total_amount', 'total_amount is Required').isNumeric(),
-                    body('quantity', 'quantity is Required').isNumeric(),
+                    // body('total_amount', 'total_amount is Required').isNumeric(),
+                    // body('quantity', 'quantity is Required').isNumeric(),
                     body('product', 'product Is Required').isString().custom((product, {req})=>{
                         return  Product.findOne({_id:product}).then(pr => {
                                     if(pr){
@@ -146,16 +146,16 @@ export class UserValidators{
                                     }
                                 })
                     }),
-                    body('amount', 'amount is Required').isNumeric().custom((amount, {req})=>{
-                        return  Cart.findOne({product:req.body.product, user:req.user.user_id}).then(cart => {
-                                    if(cart){
-                                        throw new Error('Product Already Exist in cart');
+                    // body('amount', 'amount is Required').isNumeric().custom((amount, {req})=>{
+                    //     return  Cart.findOne({product:req.body.product, user:req.user.user_id}).then(cart => {
+                    //                 if(cart){
+                    //                     throw new Error('Product Already Exist in cart');
                                         
-                                    }else{
-                                        return true;
-                                    }
-                                })
-                    }),
+                    //                 }else{
+                    //                     return true;
+                    //                 }
+                    //             })
+                    // }),
     
                 ];
         

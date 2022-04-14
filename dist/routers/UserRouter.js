@@ -23,7 +23,7 @@ class UserRouter {
     postRoutes() {
         // session
         this.router.post('/session', UserValidators_1.UserValidators.session(), UserController_1.UserController.session);
-        this.router.post('/cart/create', GlobalMiddleWare_1.GlobalMiddleWare.adminAuthenticate, UserValidators_1.UserValidators.cartCreate(), UserController_1.UserController.cartCreate);
+        this.router.post('/cart/create', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, UserValidators_1.UserValidators.cartCreate(), UserController_1.UserController.cartCreate);
         this.router.post('/signup', UserValidators_1.UserValidators.signup(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, UserController_1.UserController.signup);
         this.router.post('/password/forgot', UserValidators_1.UserValidators.passwordForgot(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, UserController_1.UserController.passwordForgot);
         this.router.post('/password/change', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, UserValidators_1.UserValidators.passwordChange(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, UserController_1.UserController.passwordChange);
