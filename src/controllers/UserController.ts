@@ -267,7 +267,7 @@ export class UserController {
     static async cartAll(req, res, next){
 
         try {
-            const cart = await Cart.find({user_id:req.user.user_id, status:1}).populate({ path: "product"});
+            const cart = await Cart.find({user:req.user.user_id, status:1}).populate({ path: "product"});
             const data = {
                 message : 'Success',
                 data:cart
@@ -281,7 +281,7 @@ export class UserController {
     static async wishlistAll(req, res, next){
 
         try {
-            const cart = await Cart.find({user_id:req.user.user_id, status:0}).populate({ path: "product"});
+            const cart = await Cart.find({user:req.user.user_id, status:0}).populate({ path: "product"});
             const data = {
                 message : 'Success',
                 data:cart

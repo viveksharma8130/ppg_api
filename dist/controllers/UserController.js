@@ -263,7 +263,7 @@ class UserController {
     static cartAll(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const cart = yield Cart_1.default.find({ user_id: req.user.user_id, status: 1 }).populate({ path: "product" });
+                const cart = yield Cart_1.default.find({ user: req.user.user_id, status: 1 }).populate({ path: "product" });
                 const data = {
                     message: 'Success',
                     data: cart
@@ -278,7 +278,7 @@ class UserController {
     static wishlistAll(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const cart = yield Cart_1.default.find({ user_id: req.user.user_id, status: 0 }).populate({ path: "product" });
+                const cart = yield Cart_1.default.find({ user: req.user.user_id, status: 0 }).populate({ path: "product" });
                 const data = {
                     message: 'Success',
                     data: cart
