@@ -35,7 +35,7 @@ class UserRouter {
     }
     deleteRoutes() {
         this.router.delete('/delete/:id', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, UserValidators_1.UserValidators.deleteUser(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, UserController_1.UserController.deleteUser);
-        this.router.delete('/cart/delete/:id', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, UserValidators_1.UserValidators.deleteUser(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, UserController_1.UserController.deleteUser);
+        this.router.delete('/cart/delete/:id', GlobalMiddleWare_1.GlobalMiddleWare.authenticate, UserValidators_1.UserValidators.deleteCart(), GlobalMiddleWare_1.GlobalMiddleWare.checkError, UserController_1.UserController.deleteCart);
     }
 }
 exports.default = new UserRouter().router;

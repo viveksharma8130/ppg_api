@@ -37,7 +37,7 @@ class UserRouter {
 
     deleteRoutes(){
         this.router.delete('/delete/:id', GlobalMiddleWare.authenticate, UserValidators.deleteUser(), GlobalMiddleWare.checkError, UserController.deleteUser);
-        this.router.delete('/cart/delete/:id', GlobalMiddleWare.authenticate, UserValidators.deleteUser(), GlobalMiddleWare.checkError, UserController.deleteUser);
+        this.router.delete('/cart/delete/:id', GlobalMiddleWare.authenticate, UserValidators.deleteCart(), GlobalMiddleWare.checkError, UserController.deleteCart);
     }
 }
 
